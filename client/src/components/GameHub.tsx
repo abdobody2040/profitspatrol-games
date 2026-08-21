@@ -19,8 +19,13 @@ const LANDMARKS = [
   { en: "Sale Street", ar: "شارع التخفيضات", cue: "street", action: "Follow each discount step to find the real final price.", actionAr: "اتبع كل خطوة خصم للوصول إلى السعر النهائي الحقيقي." },
   { en: "Shop Square", ar: "ساحة المتاجر", cue: "square", action: "Balance bills, income, and late payments to keep doors open.", actionAr: "وازن الفواتير والدخل والدفعات المتأخرة لإبقاء المتجر مفتوحاً." },
   { en: "Decision Garden", ar: "حديقة القرارات", cue: "garden", action: "Choose a route, prepare for chance, and grow your next move.", actionAr: "اختر مسارك واستعد للمفاجآت ونمِّ خطوتك التالية." },
+  { en: "Sunbeam Market", ar: "سوق الشمس", cue: "bazaar", action: "Mix a plan, set a fair price, and turn a warm day into profit.", actionAr: "اخلط خطة، وضع سعراً عادلاً، وحوّل اليوم الدافئ إلى ربح." },
+  { en: "Commerce Lane", ar: "ممر التجارة", cue: "commerce", action: "Choose stock and a supplier before the neighborhood rush.", actionAr: "اختر المخزون والمورّد قبل زحام الحي." },
+  { en: "Fashion Foundry", ar: "مشغل الأزياء", cue: "fashion", action: "Match a design to its crowd, then protect your unit profit.", actionAr: "طابق التصميم مع جمهوره، ثم احمِ ربح القطعة." },
+  { en: "Community Care", ar: "رعاية المجتمع", cue: "community", action: "Build trust through responsible care and useful advice.", actionAr: "ابنِ الثقة بالرعاية المسؤولة والنصيحة المفيدة." },
+  { en: "Downtown Café", ar: "مقهى الوسط", cue: "cafe", action: "Keep the counter moving when the lunch rush arrives.", actionAr: "حافظ على حركة الكاونتر عند وصول زحام الغداء." },
 ];
-const STATION_TONES = ["coral", "navy", "navy", "coral", "mint", "coral", "navy", "coral", "navy", "mint"];
+const STATION_TONES = ["coral", "navy", "navy", "coral", "mint", "coral", "navy", "coral", "navy", "mint", "coral", "navy", "coral", "mint", "navy"];
 
 function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: GameId) => void }) {
   const { t, i18n } = useTranslation();
@@ -39,9 +44,12 @@ function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: 
       className={`route-stop route-stop--${game.number} station-stop station-stop--${STATION_TONES[index]} station-stop--${landmark.cue} group relative`}
       style={{ "--station": game.accent } as React.CSSProperties}
     >
+      <span className="station-stop__anchor" aria-hidden="true" />
       <span className="station-stop__sidewalk" aria-hidden="true" />
       <span className="station-stop__coin" aria-hidden="true">$</span>
+      <span className="station-stop__awning" aria-hidden="true" />
       <span className="station-stop__facade" aria-hidden="true"><i /><i /><i /></span>
+      <span className="station-stop__prop" aria-hidden="true" />
       {game.image ? <img src={game.image} alt="" className="station-stop__image" /> : <div className="station-stop__pattern" aria-hidden="true"><span /><span /><span /></div>}
       <div className="station-stop__shade" />
       <div className="relative z-10 flex min-h-[255px] flex-col justify-between p-5">
@@ -50,16 +58,18 @@ function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: 
           <div className="station-stop__landmark"><Icon size={21} strokeWidth={2.4} /></div>
         </div>
         <div>
-          <p className="station-stop__sign">{landmark[isArabic ? "ar" : "en"]}</p>
-          <div className="mb-2 flex items-center gap-1 text-sm" aria-label={`${stars} ${t("common.stars")}`}>
-            {[1, 2, 3].map((star) => <span key={star} className={star <= stars ? "text-[#ffc84d]" : "text-white/50"}>★</span>)}
+          <div className="station-stop__signboard">
+            <p className="station-stop__sign">{landmark[isArabic ? "ar" : "en"]}</p>
+            <div className="mb-2 flex items-center gap-1 text-sm" aria-label={`${stars} ${t("common.stars")} `}>
+              {[1, 2, 3].map((star) => <span key={star} className={star <= stars ? "text-[#ffc84d]" : "text-white/50"}>★</span>)}
+            </div>
+            <h3 className="font-display text-2xl leading-none text-white">{t(game.titleKey)}</h3>
+            <p className="mt-2 text-sm leading-5 text-white/88">{moveCopy}</p>
+            <button type="button" onClick={() => onSelect(game.id)} className="station-play mt-4">
+              {progress?.completed ? t("hub.replay") : t("common.play")} <span className="station-stop__next">{progress?.completed ? "↻" : "→"}</span>
+              <span aria-hidden="true">→</span>
+            </button>
           </div>
-          <h3 className="font-display text-2xl leading-none text-white">{t(game.titleKey)}</h3>
-          <p className="mt-2 text-sm leading-5 text-white/88">{moveCopy}</p>
-          <button type="button" onClick={() => onSelect(game.id)} className="station-play mt-4">
-            {progress?.completed ? t("hub.replay") : t("common.play")} <span className="station-stop__next">{progress?.completed ? "↻" : "→"}</span>
-            <span aria-hidden="true">→</span>
-          </button>
         </div>
       </div>
     </motion.article>
@@ -98,7 +108,7 @@ export default function GameHub({ onSelect }: Props) {
           </div>
           <aside className="profile-pocket" aria-label={t("hub.profile")}>
             <div className="flex items-center justify-between"><p className="text-xs font-black uppercase tracking-[0.14em] text-[#54708d]">{t("hub.profile")}</p><span className="status-dot" /></div>
-            <p className="mt-3 font-display text-3xl text-[#102b4b]">{completeCount}/10 <span className="font-sans text-sm font-bold text-[#54708d]">{t("common.completed")}</span></p>
+            <p className="mt-3 font-display text-3xl text-[#102b4b]">{completeCount}/{GAME_REGISTRY.length} <span className="font-sans text-sm font-bold text-[#54708d]">{t("common.completed")}</span></p>
             <div className="mt-5 grid grid-cols-2 gap-3">
               <div className="profile-stat"><span><Target size={17} /> {t("common.xp")}</span><b>{xp}</b></div>
               <div className="profile-stat"><span><CircleDollarSign size={17} /> {t("common.coins")}</span><b>{coins}</b></div>
@@ -111,11 +121,11 @@ export default function GameHub({ onSelect }: Props) {
       <section id="stations" className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10">
         <div className="relative z-10 mb-9 flex flex-wrap items-end justify-between gap-3">
           <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#f26545]">{t("hub.mapLabel")}</p><h2 className="mt-1 font-display text-4xl text-[#102b4b]">{t("hub.ready")}</h2></div>
-          <div className="route-status"><MapPinned size={18}/><span>{completeCount}/10</span><small>{i18n.language.startsWith("ar") ? "محطات على الطريق" : "stops on your route"}</small></div>
+          <div className="route-status"><MapPinned size={18}/><span>{completeCount}/{GAME_REGISTRY.length}</span><small>{i18n.language.startsWith("ar") ? "محطات على الطريق" : "stops on your route"}</small></div>
         </div>
         <div className="neighborhood-map" role="list" aria-label={t("hub.stations")}>
-          <svg className="neighborhood-route" viewBox="0 0 1200 2400" preserveAspectRatio="none" aria-hidden="true"><path className="neighborhood-route__road" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260" /><path className="neighborhood-route__dash" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260" /><g className="neighborhood-route__pins">{[[175,145],[535,365],[975,595],[975,900],[555,1115],[190,1310],[190,1590],[555,1800],[975,1990],[975,2260]].map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" />)}</g></svg>
-          <span className="map-prop map-prop--plaza" aria-hidden="true">◌</span><span className="map-prop map-prop--store" aria-hidden="true">⌂</span><span className="map-prop map-prop--trees" aria-hidden="true">✦</span><span className="map-prop map-prop--receipt" aria-hidden="true">▤</span><span className="map-prop map-prop--bench" aria-hidden="true">⌇</span><span className="map-prop map-prop--sign" aria-hidden="true">$</span>
+          <svg className="neighborhood-route" viewBox="0 0 1200 3700" preserveAspectRatio="none" aria-hidden="true"><path className="neighborhood-route__road" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390" /><path className="neighborhood-route__dash" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390" /><g className="neighborhood-route__pins">{[[175,145],[535,365],[975,595],[975,900],[555,1115],[190,1310],[190,1590],[555,1800],[975,1990],[975,2260],[555,2490],[190,2700],[190,2960],[555,3170],[975,3390]].map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" />)}</g></svg>
+          <span className="map-prop map-prop--plaza" aria-hidden="true">◌</span><span className="map-prop map-prop--store" aria-hidden="true">⌂</span><span className="map-prop map-prop--trees" aria-hidden="true">✦</span><span className="map-prop map-prop--receipt" aria-hidden="true">▤</span><span className="map-prop map-prop--bench" aria-hidden="true">⌇</span><span className="map-prop map-prop--sign" aria-hidden="true">$</span><span className="map-prop map-prop--lemon" aria-hidden="true">◒</span><span className="map-prop map-prop--crate" aria-hidden="true">▣</span><span className="map-prop map-prop--hanger" aria-hidden="true">⌁</span><span className="map-prop map-prop--paw" aria-hidden="true">✽</span><span className="map-prop map-prop--cup" aria-hidden="true">♨</span>
           {GAME_REGISTRY.map((game) => <StationCard key={game.id} game={game} onSelect={onSelect} />)}
         </div>
       </section>

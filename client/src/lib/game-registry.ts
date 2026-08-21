@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -30,6 +30,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "discount", number: "08", icon: "badge", age: "8–14", duration: "2–5", titleKey: "games.discount.title", shortKey: "games.discount.short", objectiveKey: "games.discount.objective", skillKey: "games.discount.skill", accent: "#fd5a7d" },
   { id: "cashflow", number: "09", icon: "store", age: "10–16", duration: "4–7", titleKey: "games.cashflow.title", shortKey: "games.cashflow.short", objectiveKey: "games.cashflow.objective", skillKey: "games.cashflow.skill", accent: "#2a9d8f", image: "/manus-storage/profitspatrol-cashflow-scene_86e90589.png" },
   { id: "maze", number: "10", icon: "route", age: "9–15", duration: "3–6", titleKey: "games.maze.title", shortKey: "games.maze.short", objectiveKey: "games.maze.objective", skillKey: "games.maze.skill", accent: "#356de1" },
+  { id: "lemonade", number: "11", icon: "store", age: "7–11", duration: "4–7", titleKey: "games.lemonade.title", shortKey: "games.lemonade.short", objectiveKey: "games.lemonade.objective", skillKey: "games.lemonade.skill", accent: "#f2a93b", image: "/manus-storage/profitspatrol-lemonade-boss_fc5440d1.png" },
+  { id: "snack", number: "12", icon: "store", age: "8–12", duration: "4–7", titleKey: "games.snack.title", shortKey: "games.snack.short", objectiveKey: "games.snack.objective", skillKey: "games.snack.skill", accent: "#e7774b", image: "/manus-storage/profitspatrol-snack-shack_45948480.png" },
+  { id: "tshirt", number: "13", icon: "store", age: "9–14", duration: "5–8", titleKey: "games.tshirt.title", shortKey: "games.tshirt.short", objectiveKey: "games.tshirt.objective", skillKey: "games.tshirt.skill", accent: "#8c69d6", image: "/manus-storage/profitspatrol-tshirt-tycoon_780eac04.png" },
+  { id: "pet", number: "14", icon: "store", age: "9–14", duration: "5–8", titleKey: "games.pet.title", shortKey: "games.pet.short", objectiveKey: "games.pet.objective", skillKey: "games.pet.skill", accent: "#4fab8a", image: "/manus-storage/profitspatrol-pet-shop-manager_8e2030bf.png" },
+  { id: "cafe", number: "15", icon: "store", age: "10–15", duration: "6–10", titleKey: "games.cafe.title", shortKey: "games.cafe.short", objectiveKey: "games.cafe.objective", skillKey: "games.cafe.skill", accent: "#b85a43", image: "/manus-storage/profitspatrol-mini-cafe_01d5224d.png" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;
