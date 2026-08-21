@@ -62,3 +62,15 @@
 - [x] Add Game 35 Innovation Challenge with research, problem definition, alternative solutions, constraints, prototype/testing cycles, improvement, and final pitch.
 - [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all thirty-five games without duplicating infrastructure.
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
+
+## Batch 08 Leadership, Negotiation & Communication
+
+- [x] Read the complete Batch 08 requirements for Games 36–40 and confirm the social-simulation, fairness, and no-quiz requirements.
+- [x] Inspect Games 01–35, the shared GameShell, registry, progression, localization, and route hub for Batch 08 extension points; correct prior games only if a real regression appears.
+- [x] Add Game 36 Negotiation Arena with fictional partners, multi-variable proposals, counteroffers, backup options, fairness, relationships, and deal-or-walk-away outcomes.
+- [x] Add Game 37 Team Captain with project tasks, strengths-based delegation, workload balance, priorities, morale reactions, adjustments, and project outcomes.
+- [x] Add Game 38 Deal Maker with fictional partnership offers, full-term inspection, risk comparison, trade-offs, negotiation, and accept-or-reject outcomes.
+- [x] Add Game 39 Communication Lab with audience-aware goals, tone, clarity, details, structure, calls-to-action, audience reactions, misunderstandings, and improved messages.
+- [x] Add Game 40 Leadership Quest with simultaneous fictional leadership challenges, information review, adaptive styles, team reactions, operational consequences, and multi-metric outcomes.
+- [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all forty games without duplicating infrastructure.
+- [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.

@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis", "ideafactory", "productlab", "prototyperush", "customerfeedback", "innovationchallenge",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis", "ideafactory", "productlab", "prototyperush", "customerfeedback", "innovationchallenge", "negotiationarena", "teamcaptain", "dealmaker", "communicationlab", "leadershipquest",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -55,6 +55,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "prototyperush", number: "33", icon: "target", age: "10–16", duration: "5–9", titleKey: "games.prototyperush.title", shortKey: "games.prototyperush.short", objectiveKey: "games.prototyperush.objective", skillKey: "games.prototyperush.skill", accent: "#356de1" },
   { id: "customerfeedback", number: "34", icon: "search", age: "9–15", duration: "5–8", titleKey: "games.customerfeedback.title", shortKey: "games.customerfeedback.short", objectiveKey: "games.customerfeedback.objective", skillKey: "games.customerfeedback.skill", accent: "#ff6b4a" },
   { id: "innovationchallenge", number: "35", icon: "route", age: "11–17", duration: "6–10", titleKey: "games.innovationchallenge.title", shortKey: "games.innovationchallenge.short", objectiveKey: "games.innovationchallenge.objective", skillKey: "games.innovationchallenge.skill", accent: "#765ce8" },
+  { id: "negotiationarena", number: "36", icon: "target", age: "10–16", duration: "6–9", titleKey: "games.negotiationarena.title", shortKey: "games.negotiationarena.short", objectiveKey: "games.negotiationarena.objective", skillKey: "games.negotiationarena.skill", accent: "#f2a93b" },
+  { id: "teamcaptain", number: "37", icon: "shapes", age: "10–16", duration: "6–9", titleKey: "games.teamcaptain.title", shortKey: "games.teamcaptain.short", objectiveKey: "games.teamcaptain.objective", skillKey: "games.teamcaptain.skill", accent: "#47b7a0" },
+  { id: "dealmaker", number: "38", icon: "wallet", age: "11–17", duration: "6–10", titleKey: "games.dealmaker.title", shortKey: "games.dealmaker.short", objectiveKey: "games.dealmaker.objective", skillKey: "games.dealmaker.skill", accent: "#356de1" },
+  { id: "communicationlab", number: "39", icon: "search", age: "9–15", duration: "5–8", titleKey: "games.communicationlab.title", shortKey: "games.communicationlab.short", objectiveKey: "games.communicationlab.objective", skillKey: "games.communicationlab.skill", accent: "#ff6b4a" },
+  { id: "leadershipquest", number: "40", icon: "route", age: "11–17", duration: "6–10", titleKey: "games.leadershipquest.title", shortKey: "games.leadershipquest.short", objectiveKey: "games.leadershipquest.objective", skillKey: "games.leadershipquest.skill", accent: "#765ce8" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

@@ -8,7 +8,9 @@ import { BrandBuilder, MarketingMix, SalesMaster } from "./Batch04More";
 import { CompoundMountain, InvestmentIsland, PortfolioQuest, RiskRadar, ScamDetective } from "./Batch05Games";
 import { BusinessCrisis, InventoryMaster, SupplyChainRush, TeamBuilder, TimeTycoon } from "./Batch06Games";
 import { CustomerFeedback, IdeaFactory, InnovationChallenge, ProductLab, PrototypeRush } from "./Batch07Games";
+import { CommunicationLab, DealMaker, LeadershipQuest, NegotiationArena, TeamCaptain } from "./Batch08Games";
 import "./game-ui.css";
+import "./batch08.css";
 
 export type GameResult = { achieved: boolean; score: number; stars: number; message: string };
 type Props = { gameId: GameId; paused: boolean; onEnd: (result: GameResult) => void };
@@ -51,6 +53,11 @@ export function GameRunner({ gameId, paused, onEnd }: Props) {
     case "prototyperush": return <PrototypeRush paused={paused} onEnd={onEnd} />;
     case "customerfeedback": return <CustomerFeedback paused={paused} onEnd={onEnd} />;
     case "innovationchallenge": return <InnovationChallenge paused={paused} onEnd={onEnd} />;
+    case "negotiationarena": return <NegotiationArena paused={paused} onEnd={onEnd} />;
+    case "teamcaptain": return <TeamCaptain paused={paused} onEnd={onEnd} />;
+    case "dealmaker": return <DealMaker paused={paused} onEnd={onEnd} />;
+    case "communicationlab": return <CommunicationLab paused={paused} onEnd={onEnd} />;
+    case "leadershipquest": return <LeadershipQuest paused={paused} onEnd={onEnd} />;
   }
 }
 
