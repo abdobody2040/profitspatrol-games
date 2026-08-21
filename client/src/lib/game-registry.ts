@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis", "ideafactory", "productlab", "prototyperush", "customerfeedback", "innovationchallenge", "negotiationarena", "teamcaptain", "dealmaker", "communicationlab", "leadershipquest",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis", "ideafactory", "productlab", "prototyperush", "customerfeedback", "innovationchallenge", "negotiationarena", "teamcaptain", "dealmaker", "communicationlab", "leadershipquest", "marketwars", "strategyempire", "competitorhunt", "growthengine", "businesstycoon",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -60,6 +60,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "dealmaker", number: "38", icon: "wallet", age: "11–17", duration: "6–10", titleKey: "games.dealmaker.title", shortKey: "games.dealmaker.short", objectiveKey: "games.dealmaker.objective", skillKey: "games.dealmaker.skill", accent: "#356de1" },
   { id: "communicationlab", number: "39", icon: "search", age: "9–15", duration: "5–8", titleKey: "games.communicationlab.title", shortKey: "games.communicationlab.short", objectiveKey: "games.communicationlab.objective", skillKey: "games.communicationlab.skill", accent: "#ff6b4a" },
   { id: "leadershipquest", number: "40", icon: "route", age: "11–17", duration: "6–10", titleKey: "games.leadershipquest.title", shortKey: "games.leadershipquest.short", objectiveKey: "games.leadershipquest.objective", skillKey: "games.leadershipquest.skill", accent: "#765ce8" },
+  { id: "marketwars", number: "41", icon: "target", age: "11–17", duration: "6–10", titleKey: "games.marketwars.title", shortKey: "games.marketwars.short", objectiveKey: "games.marketwars.objective", skillKey: "games.marketwars.skill", accent: "#f2a93b" },
+  { id: "strategyempire", number: "42", icon: "route", age: "11–17", duration: "7–11", titleKey: "games.strategyempire.title", shortKey: "games.strategyempire.short", objectiveKey: "games.strategyempire.objective", skillKey: "games.strategyempire.skill", accent: "#765ce8" },
+  { id: "competitorhunt", number: "43", icon: "search", age: "10–16", duration: "6–10", titleKey: "games.competitorhunt.title", shortKey: "games.competitorhunt.short", objectiveKey: "games.competitorhunt.objective", skillKey: "games.competitorhunt.skill", accent: "#4da2ff" },
+  { id: "growthengine", number: "44", icon: "target", age: "11–17", duration: "6–10", titleKey: "games.growthengine.title", shortKey: "games.growthengine.short", objectiveKey: "games.growthengine.objective", skillKey: "games.growthengine.skill", accent: "#47b7a0" },
+  { id: "businesstycoon", number: "45", icon: "store", age: "12–17", duration: "8–12", titleKey: "games.businesstycoon.title", shortKey: "games.businesstycoon.short", objectiveKey: "games.businesstycoon.objective", skillKey: "games.businesstycoon.skill", accent: "#f2a93b" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

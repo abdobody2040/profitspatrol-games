@@ -74,3 +74,15 @@
 - [x] Add Game 40 Leadership Quest with simultaneous fictional leadership challenges, information review, adaptive styles, team reactions, operational consequences, and multi-metric outcomes.
 - [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all forty games without duplicating infrastructure.
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
+
+## Batch 09 Strategy, Competition & Business Growth
+
+- [x] Read the complete Batch 09 requirements for Games 41–45 and confirm the strategic decision, market-response, adaptation, and no-quiz requirements.
+- [x] Inspect Games 01–40, the shared GameShell, registry, progression, localization, and route hub for Batch 09 extension points; correct prior games only if a real regression appears.
+- [x] Add Game 41 Market Wars with fictional competitors, variable strategic choices, customer and competitor responses, changing markets, and adaptive outcomes.
+- [x] Add Game 42 Strategy Empire with strategic paths, constrained resources, multi-period investment, business results, reinvestment, and long-term trade-offs.
+- [x] Add Game 43 Competitor Hunt with fictional market research, evidence inspection, fact-versus-assumption sorting, competitor comparison, opportunity selection, and validation feedback.
+- [x] Add Game 44 Growth Engine with acquisition, product value, support, retention, referrals, revenue, reinvestment, sustainable-growth metrics, and adaptive periods.
+- [x] Add Game 45 Business Tycoon with fictional multi-period product, price, marketing, operations, team, cash, competitor, customer, and strategy decisions.
+- [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all forty-five games without duplicating infrastructure.
+- [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
