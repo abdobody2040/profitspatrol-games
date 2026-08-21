@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -45,6 +45,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "portfolioquest", number: "23", icon: "shapes", age: "12–17", duration: "6–10", titleKey: "games.portfolioquest.title", shortKey: "games.portfolioquest.short", objectiveKey: "games.portfolioquest.objective", skillKey: "games.portfolioquest.skill", accent: "#f2a93b", image: "/manus-storage/profitspatrol-portfolio-quest_42540385.png" },
   { id: "compoundmtn", number: "24", icon: "piggy", age: "10–17", duration: "4–7", titleKey: "games.compoundmtn.title", shortKey: "games.compoundmtn.short", objectiveKey: "games.compoundmtn.objective", skillKey: "games.compoundmtn.skill", accent: "#765ce8", image: "/manus-storage/profitspatrol-compound-mountain_505e0dfb.png" },
   { id: "scamdetective", number: "25", icon: "search", age: "10–17", duration: "5–8", titleKey: "games.scamdetective.title", shortKey: "games.scamdetective.short", objectiveKey: "games.scamdetective.objective", skillKey: "games.scamdetective.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-scam-detective_fe5d6817.png" },
+  { id: "timetycoon", number: "26", icon: "target", age: "9–15", duration: "5–8", titleKey: "games.timetycoon.title", shortKey: "games.timetycoon.short", objectiveKey: "games.timetycoon.objective", skillKey: "games.timetycoon.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-time-tycoon_bc91e7a1.png" },
+  { id: "teambuilder", number: "27", icon: "shapes", age: "10–16", duration: "5–8", titleKey: "games.teambuilder.title", shortKey: "games.teambuilder.short", objectiveKey: "games.teambuilder.objective", skillKey: "games.teambuilder.skill", accent: "#47b7a0", image: "/manus-storage/profitspatrol-team-builder_7b77cdec.png" },
+  { id: "supplychain", number: "28", icon: "route", age: "10–16", duration: "5–9", titleKey: "games.supplychain.title", shortKey: "games.supplychain.short", objectiveKey: "games.supplychain.objective", skillKey: "games.supplychain.skill", accent: "#356de1", image: "/manus-storage/profitspatrol-supply-chain-rush_2db2c684.png" },
+  { id: "inventorymaster", number: "29", icon: "store", age: "9–15", duration: "5–8", titleKey: "games.inventorymaster.title", shortKey: "games.inventorymaster.short", objectiveKey: "games.inventorymaster.objective", skillKey: "games.inventorymaster.skill", accent: "#47b7a0", image: "/manus-storage/profitspatrol-inventory-master_f4b22796.png" },
+  { id: "businesscrisis", number: "30", icon: "target", age: "11–17", duration: "6–10", titleKey: "games.businesscrisis.title", shortKey: "games.businesscrisis.short", objectiveKey: "games.businesscrisis.objective", skillKey: "games.businesscrisis.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-business-crisis_7a8e6f83.png" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

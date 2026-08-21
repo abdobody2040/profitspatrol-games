@@ -38,3 +38,15 @@
 - [ ] Add Game 25 Scam Detective with defensive-only red-flag inspection, safe/suspicious/scam classification, fictional messages, and no fraud-enablement content.
 - [ ] Extend the route map, rewards, saved progress, localized copy, and Arabic RTL presentation to all twenty-five games without duplicating shared infrastructure.
 - [ ] Run educational-safety, gameplay, responsive, localization, TypeScript, build, and regression verification before delivery.
+
+## Batch 06 Operations, Productivity & Management
+
+- [x] Read the complete Batch 06 requirements for Games 26–30 and confirm all shared-system, meaningful-loop, and anti-quiz requirements.
+- [x] Inspect Games 01–25, the shared GameShell, registry, progression, localization, and route hub for Batch 06 extension points; correct prior games only if a real regression appears.
+- [x] Add Game 26 Time Tycoon with limited hours, task prioritization, execution trade-offs, changing events, and end-of-day review.
+- [x] Add Game 27 Team Builder with candidate strengths, goal-based team composition, role assignment, team-performance events, and iterative adjustments.
+- [x] Add Game 28 Supply Chain Rush with demand forecasts, suppliers, quantities, production, transport, capacity, disruptions, and customer-delivery outcomes.
+- [x] Add Game 29 Inventory Master with product demand, inventory checks, order quantities, stockout/overstock trade-offs, reorder timing, and review metrics.
+- [x] Add Game 30 Business Crisis with useful operational data, root-cause investigation, scenario-based responses, new information, strategy adjustments, and stabilization outcomes.
+- [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all thirty games without duplicating infrastructure.
+- [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
