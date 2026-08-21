@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -40,6 +40,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "salesmaster", number: "18", icon: "badge", age: "9–14", duration: "5–8", titleKey: "games.salesmaster.title", shortKey: "games.salesmaster.short", objectiveKey: "games.salesmaster.objective", skillKey: "games.salesmaster.skill", accent: "#f2a93b", image: "/manus-storage/profitspatrol-sales-master_bfa7c59c.png" },
   { id: "brandbuilder", number: "19", icon: "shapes", age: "9–14", duration: "5–8", titleKey: "games.brandbuilder.title", shortKey: "games.brandbuilder.short", objectiveKey: "games.brandbuilder.objective", skillKey: "games.brandbuilder.skill", accent: "#8c69d6", image: "/manus-storage/profitspatrol-brand-builder_1598968b.png" },
   { id: "marketingmix", number: "20", icon: "target", age: "10–15", duration: "5–9", titleKey: "games.marketingmix.title", shortKey: "games.marketingmix.short", objectiveKey: "games.marketingmix.objective", skillKey: "games.marketingmix.skill", accent: "#4da2ff", image: "/manus-storage/profitspatrol-marketing-mix_4ac7d08e.png" },
+  { id: "investisland", number: "21", icon: "route", age: "11–17", duration: "5–8", titleKey: "games.investisland.title", shortKey: "games.investisland.short", objectiveKey: "games.investisland.objective", skillKey: "games.investisland.skill", accent: "#2a9d8f", image: "/manus-storage/profitspatrol-investment-island_49643be5.png" },
+  { id: "riskradar", number: "22", icon: "target", age: "10–16", duration: "4–7", titleKey: "games.riskradar.title", shortKey: "games.riskradar.short", objectiveKey: "games.riskradar.objective", skillKey: "games.riskradar.skill", accent: "#356de1", image: "/manus-storage/profitspatrol-risk-radar_410cb874.png" },
+  { id: "portfolioquest", number: "23", icon: "shapes", age: "12–17", duration: "6–10", titleKey: "games.portfolioquest.title", shortKey: "games.portfolioquest.short", objectiveKey: "games.portfolioquest.objective", skillKey: "games.portfolioquest.skill", accent: "#f2a93b", image: "/manus-storage/profitspatrol-portfolio-quest_42540385.png" },
+  { id: "compoundmtn", number: "24", icon: "piggy", age: "10–17", duration: "4–7", titleKey: "games.compoundmtn.title", shortKey: "games.compoundmtn.short", objectiveKey: "games.compoundmtn.objective", skillKey: "games.compoundmtn.skill", accent: "#765ce8", image: "/manus-storage/profitspatrol-compound-mountain_505e0dfb.png" },
+  { id: "scamdetective", number: "25", icon: "search", age: "10–17", duration: "5–8", titleKey: "games.scamdetective.title", shortKey: "games.scamdetective.short", objectiveKey: "games.scamdetective.objective", skillKey: "games.scamdetective.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-scam-detective_fe5d6817.png" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

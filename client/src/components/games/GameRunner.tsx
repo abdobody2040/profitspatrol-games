@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import type { GameId } from "@/lib/game-registry";
 import { AdAgency, CustomerQuest } from "./Batch04Games";
 import { BrandBuilder, MarketingMix, SalesMaster } from "./Batch04More";
+import { CompoundMountain, InvestmentIsland, PortfolioQuest, RiskRadar, ScamDetective } from "./Batch05Games";
 import "./game-ui.css";
 
 export type GameResult = { achieved: boolean; score: number; stars: number; message: string };
@@ -33,6 +34,11 @@ export function GameRunner({ gameId, paused, onEnd }: Props) {
     case "salesmaster": return <SalesMaster paused={paused} onEnd={onEnd} />;
     case "brandbuilder": return <BrandBuilder paused={paused} onEnd={onEnd} />;
     case "marketingmix": return <MarketingMix paused={paused} onEnd={onEnd} />;
+    case "investisland": return <InvestmentIsland paused={paused} onEnd={onEnd} />;
+    case "riskradar": return <RiskRadar paused={paused} onEnd={onEnd} />;
+    case "portfolioquest": return <PortfolioQuest paused={paused} onEnd={onEnd} />;
+    case "compoundmtn": return <CompoundMountain paused={paused} onEnd={onEnd} />;
+    case "scamdetective": return <ScamDetective paused={paused} onEnd={onEnd} />;
   }
 }
 

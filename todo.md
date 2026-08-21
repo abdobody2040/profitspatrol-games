@@ -27,3 +27,14 @@
 - [x] Add Game 20 Marketing Mix with age-appropriate 4Ps choices, market trade-offs, launch results, and optimization.
 - [x] Extend the route map, rewards, saved progress, localized copy, and Arabic RTL presentation to all twenty games without duplicating shared infrastructure.
 - [x] Run gameplay, responsive, localization, TypeScript, build, and regression verification before delivery.
+
+## Batch 05 Investing, Risk & Financial Decisions
+
+- [x] Read the complete Batch 05 requirements for Games 21–25 and confirm the educational-fictional safety boundaries.
+- [ ] Add Game 21 Investment Island with fictional opportunities, risk/reward research, allocation choices, uncertain events, and diversification learning.
+- [ ] Add Game 22 Risk Radar with probability, impact, priority, response choices, realistic consequences, and preparation learning.
+- [ ] Add Game 23 Portfolio Quest with fictional assets, allocation visualization, diversification, market events, rebalancing, and concentration-risk learning.
+- [ ] Add Game 24 Compound Mountain with clearly labelled educational simulations, time-based comparison, recurring contributions, and non-guaranteed compound-growth learning.
+- [ ] Add Game 25 Scam Detective with defensive-only red-flag inspection, safe/suspicious/scam classification, fictional messages, and no fraud-enablement content.
+- [ ] Extend the route map, rewards, saved progress, localized copy, and Arabic RTL presentation to all twenty-five games without duplicating shared infrastructure.
+- [ ] Run educational-safety, gameplay, responsive, localization, TypeScript, build, and regression verification before delivery.
