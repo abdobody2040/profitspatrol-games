@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix", "investisland", "riskradar", "portfolioquest", "compoundmtn", "scamdetective", "timetycoon", "teambuilder", "supplychain", "inventorymaster", "businesscrisis", "ideafactory", "productlab", "prototyperush", "customerfeedback", "innovationchallenge",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -50,6 +50,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "supplychain", number: "28", icon: "route", age: "10–16", duration: "5–9", titleKey: "games.supplychain.title", shortKey: "games.supplychain.short", objectiveKey: "games.supplychain.objective", skillKey: "games.supplychain.skill", accent: "#356de1", image: "/manus-storage/profitspatrol-supply-chain-rush_2db2c684.png" },
   { id: "inventorymaster", number: "29", icon: "store", age: "9–15", duration: "5–8", titleKey: "games.inventorymaster.title", shortKey: "games.inventorymaster.short", objectiveKey: "games.inventorymaster.objective", skillKey: "games.inventorymaster.skill", accent: "#47b7a0", image: "/manus-storage/profitspatrol-inventory-master_f4b22796.png" },
   { id: "businesscrisis", number: "30", icon: "target", age: "11–17", duration: "6–10", titleKey: "games.businesscrisis.title", shortKey: "games.businesscrisis.short", objectiveKey: "games.businesscrisis.objective", skillKey: "games.businesscrisis.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-business-crisis_7a8e6f83.png" },
+  { id: "ideafactory", number: "31", icon: "shapes", age: "9–15", duration: "5–8", titleKey: "games.ideafactory.title", shortKey: "games.ideafactory.short", objectiveKey: "games.ideafactory.objective", skillKey: "games.ideafactory.skill", accent: "#f2a93b" },
+  { id: "productlab", number: "32", icon: "store", age: "10–16", duration: "5–8", titleKey: "games.productlab.title", shortKey: "games.productlab.short", objectiveKey: "games.productlab.objective", skillKey: "games.productlab.skill", accent: "#47b7a0" },
+  { id: "prototyperush", number: "33", icon: "target", age: "10–16", duration: "5–9", titleKey: "games.prototyperush.title", shortKey: "games.prototyperush.short", objectiveKey: "games.prototyperush.objective", skillKey: "games.prototyperush.skill", accent: "#356de1" },
+  { id: "customerfeedback", number: "34", icon: "search", age: "9–15", duration: "5–8", titleKey: "games.customerfeedback.title", shortKey: "games.customerfeedback.short", objectiveKey: "games.customerfeedback.objective", skillKey: "games.customerfeedback.skill", accent: "#ff6b4a" },
+  { id: "innovationchallenge", number: "35", icon: "route", age: "11–17", duration: "6–10", titleKey: "games.innovationchallenge.title", shortKey: "games.innovationchallenge.short", objectiveKey: "games.innovationchallenge.objective", skillKey: "games.innovationchallenge.skill", accent: "#765ce8" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

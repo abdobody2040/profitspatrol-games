@@ -50,3 +50,15 @@
 - [x] Add Game 30 Business Crisis with useful operational data, root-cause investigation, scenario-based responses, new information, strategy adjustments, and stabilization outcomes.
 - [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all thirty games without duplicating infrastructure.
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
+
+## Batch 07 Innovation, Products & Problem Solving
+
+- [x] Read the complete Batch 07 requirements for Games 31–35 and confirm shared-system, meaningful-loop, and anti-quiz requirements.
+- [x] Inspect Games 01–30, the shared GameShell, registry, progression, localization, and route hub for Batch 07 extension points; correct prior games only if a real regression appears.
+- [x] Add Game 31 Idea Factory with customer problems, idea components, solution evaluation, viable alternative concepts, and improvement before launch.
+- [x] Add Game 32 Product Lab with customer profiles, configurable product decisions, feature/cost/durability/price trade-offs, evaluation, and iterative redesign.
+- [x] Add Game 33 Prototype Rush with constrained build resources, testing, severity/frequency/customer-impact prioritization, fixes, retesting, and final prototype feedback.
+- [x] Add Game 34 Customer Feedback with fictional customer input, pattern detection, category grouping, limited improvement resources, release updates, and new feedback.
+- [x] Add Game 35 Innovation Challenge with research, problem definition, alternative solutions, constraints, prototype/testing cycles, improvement, and final pitch.
+- [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all thirty-five games without duplicating infrastructure.
+- [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.

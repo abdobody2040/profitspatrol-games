@@ -7,6 +7,7 @@ import { AdAgency, CustomerQuest } from "./Batch04Games";
 import { BrandBuilder, MarketingMix, SalesMaster } from "./Batch04More";
 import { CompoundMountain, InvestmentIsland, PortfolioQuest, RiskRadar, ScamDetective } from "./Batch05Games";
 import { BusinessCrisis, InventoryMaster, SupplyChainRush, TeamBuilder, TimeTycoon } from "./Batch06Games";
+import { CustomerFeedback, IdeaFactory, InnovationChallenge, ProductLab, PrototypeRush } from "./Batch07Games";
 import "./game-ui.css";
 
 export type GameResult = { achieved: boolean; score: number; stars: number; message: string };
@@ -45,6 +46,11 @@ export function GameRunner({ gameId, paused, onEnd }: Props) {
     case "supplychain": return <SupplyChainRush paused={paused} onEnd={onEnd} />;
     case "inventorymaster": return <InventoryMaster paused={paused} onEnd={onEnd} />;
     case "businesscrisis": return <BusinessCrisis paused={paused} onEnd={onEnd} />;
+    case "ideafactory": return <IdeaFactory paused={paused} onEnd={onEnd} />;
+    case "productlab": return <ProductLab paused={paused} onEnd={onEnd} />;
+    case "prototyperush": return <PrototypeRush paused={paused} onEnd={onEnd} />;
+    case "customerfeedback": return <CustomerFeedback paused={paused} onEnd={onEnd} />;
+    case "innovationchallenge": return <InnovationChallenge paused={paused} onEnd={onEnd} />;
   }
 }
 
