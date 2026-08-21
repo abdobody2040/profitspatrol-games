@@ -3,6 +3,8 @@ import { ArrowLeft, ArrowRight, BriefcaseBusiness, CircleDollarSign, Coins, Hand
 import { useEffect, useMemo, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import type { GameId } from "@/lib/game-registry";
+import { AdAgency, CustomerQuest } from "./Batch04Games";
+import { BrandBuilder, MarketingMix, SalesMaster } from "./Batch04More";
 import "./game-ui.css";
 
 export type GameResult = { achieved: boolean; score: number; stars: number; message: string };
@@ -26,6 +28,11 @@ export function GameRunner({ gameId, paused, onEnd }: Props) {
     case "tshirt": return <TShirtTycoon paused={paused} onEnd={onEnd} />;
     case "pet": return <PetShopManager paused={paused} onEnd={onEnd} />;
     case "cafe": return <MiniCafe paused={paused} onEnd={onEnd} />;
+    case "adagency": return <AdAgency paused={paused} onEnd={onEnd} />;
+    case "customerquest": return <CustomerQuest paused={paused} onEnd={onEnd} />;
+    case "salesmaster": return <SalesMaster paused={paused} onEnd={onEnd} />;
+    case "brandbuilder": return <BrandBuilder paused={paused} onEnd={onEnd} />;
+    case "marketingmix": return <MarketingMix paused={paused} onEnd={onEnd} />;
   }
 }
 

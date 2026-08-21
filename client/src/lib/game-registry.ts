@@ -1,6 +1,6 @@
 /** Design reminder: Registry metadata powers one connected business neighborhood, never duplicate hard-coded game cards. */
 export const GAME_IDS = [
-  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe",
+  "coin", "needs", "sorter", "budget", "savings", "change", "detective", "discount", "cashflow", "maze", "lemonade", "snack", "tshirt", "pet", "cafe", "adagency", "customerquest", "salesmaster", "brandbuilder", "marketingmix",
 ] as const;
 
 export type GameId = (typeof GAME_IDS)[number];
@@ -35,6 +35,11 @@ export const GAME_REGISTRY: GameDefinition[] = [
   { id: "tshirt", number: "13", icon: "store", age: "9–14", duration: "5–8", titleKey: "games.tshirt.title", shortKey: "games.tshirt.short", objectiveKey: "games.tshirt.objective", skillKey: "games.tshirt.skill", accent: "#8c69d6", image: "/manus-storage/profitspatrol-tshirt-tycoon_780eac04.png" },
   { id: "pet", number: "14", icon: "store", age: "9–14", duration: "5–8", titleKey: "games.pet.title", shortKey: "games.pet.short", objectiveKey: "games.pet.objective", skillKey: "games.pet.skill", accent: "#4fab8a", image: "/manus-storage/profitspatrol-pet-shop-manager_8e2030bf.png" },
   { id: "cafe", number: "15", icon: "store", age: "10–15", duration: "6–10", titleKey: "games.cafe.title", shortKey: "games.cafe.short", objectiveKey: "games.cafe.objective", skillKey: "games.cafe.skill", accent: "#b85a43", image: "/manus-storage/profitspatrol-mini-cafe_01d5224d.png" },
+  { id: "adagency", number: "16", icon: "badge", age: "9–14", duration: "5–8", titleKey: "games.adagency.title", shortKey: "games.adagency.short", objectiveKey: "games.adagency.objective", skillKey: "games.adagency.skill", accent: "#ff6b4a", image: "/manus-storage/profitspatrol-ad-agency_318db0cb.png" },
+  { id: "customerquest", number: "17", icon: "search", age: "9–14", duration: "5–8", titleKey: "games.customerquest.title", shortKey: "games.customerquest.short", objectiveKey: "games.customerquest.objective", skillKey: "games.customerquest.skill", accent: "#47b7a0", image: "/manus-storage/profitspatrol-customer-quest_a18309cc.png" },
+  { id: "salesmaster", number: "18", icon: "badge", age: "9–14", duration: "5–8", titleKey: "games.salesmaster.title", shortKey: "games.salesmaster.short", objectiveKey: "games.salesmaster.objective", skillKey: "games.salesmaster.skill", accent: "#f2a93b", image: "/manus-storage/profitspatrol-sales-master_bfa7c59c.png" },
+  { id: "brandbuilder", number: "19", icon: "shapes", age: "9–14", duration: "5–8", titleKey: "games.brandbuilder.title", shortKey: "games.brandbuilder.short", objectiveKey: "games.brandbuilder.objective", skillKey: "games.brandbuilder.skill", accent: "#8c69d6", image: "/manus-storage/profitspatrol-brand-builder_1598968b.png" },
+  { id: "marketingmix", number: "20", icon: "target", age: "10–15", duration: "5–9", titleKey: "games.marketingmix.title", shortKey: "games.marketingmix.short", objectiveKey: "games.marketingmix.objective", skillKey: "games.marketingmix.skill", accent: "#4da2ff", image: "/manus-storage/profitspatrol-marketing-mix_4ac7d08e.png" },
 ];
 
 export const getGame = (id: GameId) => GAME_REGISTRY.find((game) => game.id === id)!;

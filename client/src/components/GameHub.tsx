@@ -24,8 +24,13 @@ const LANDMARKS = [
   { en: "Fashion Foundry", ar: "مشغل الأزياء", cue: "fashion", action: "Match a design to its crowd, then protect your unit profit.", actionAr: "طابق التصميم مع جمهوره، ثم احمِ ربح القطعة." },
   { en: "Community Care", ar: "رعاية المجتمع", cue: "community", action: "Build trust through responsible care and useful advice.", actionAr: "ابنِ الثقة بالرعاية المسؤولة والنصيحة المفيدة." },
   { en: "Downtown Café", ar: "مقهى الوسط", cue: "cafe", action: "Keep the counter moving when the lunch rush arrives.", actionAr: "حافظ على حركة الكاونتر عند وصول زحام الغداء." },
+  { en: "Creative Corner", ar: "زاوية الإبداع", cue: "creative", action: "Match a helpful message to people who will value the offer.", actionAr: "طابق رسالة مفيدة مع أشخاص سيقدرون العرض." },
+  { en: "Customer Market", ar: "سوق الزبون", cue: "customer", action: "Listen carefully, inspect the fit, and recommend what truly helps.", actionAr: "استمع جيداً، وافحص الملاءمة، واقترح ما يساعد فعلاً." },
+  { en: "Trust Terrace", ar: "مصطبة الثقة", cue: "sales", action: "Listen before you recommend, then make the helpful match.", actionAr: "استمع قبل أن تقترح، ثم قدّم الاختيار المفيد." },
+  { en: "Identity Studio", ar: "استوديو الهوية", cue: "brand", action: "Shape a promise your neighborhood can recognise and trust.", actionAr: "اصنع وعداً يتعرف إليه الحي ويثق به." },
+  { en: "Launch Plaza", ar: "ساحة الإطلاق", cue: "mix", action: "Balance the four Ps and give your launch a fair start.", actionAr: "وازن عناصر 4Ps وامنح إطلاقك بداية عادلة." },
 ];
-const STATION_TONES = ["coral", "navy", "navy", "coral", "mint", "coral", "navy", "coral", "navy", "mint", "coral", "navy", "coral", "mint", "navy"];
+const STATION_TONES = ["coral", "navy", "navy", "coral", "mint", "coral", "navy", "coral", "navy", "mint", "coral", "navy", "coral", "mint", "navy", "coral", "mint", "coral", "navy", "mint"];
 
 function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: GameId) => void }) {
   const { t, i18n } = useTranslation();
@@ -41,34 +46,36 @@ function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: 
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: Number(game.number) * 0.028 }}
-      className={`route-stop route-stop--${game.number} station-stop station-stop--${STATION_TONES[index]} station-stop--${landmark.cue} group relative`}
+      className={`route-stop route-stop--${game.number} group relative`}
       style={{ "--station": game.accent } as React.CSSProperties}
     >
       <span className="station-stop__anchor" aria-hidden="true" />
-      <span className="station-stop__sidewalk" aria-hidden="true" />
-      <span className="station-stop__coin" aria-hidden="true">$</span>
-      <span className="station-stop__awning" aria-hidden="true" />
-      <span className="station-stop__facade" aria-hidden="true"><i /><i /><i /></span>
-      <span className="station-stop__prop" aria-hidden="true" />
-      {game.image ? <img src={game.image} alt="" className="station-stop__image" /> : <div className="station-stop__pattern" aria-hidden="true"><span /><span /><span /></div>}
-      <div className="station-stop__shade" />
-      <div className="relative z-10 flex min-h-[255px] flex-col justify-between p-5">
-        <div className="flex items-start justify-between gap-4">
-          <span className="station-number">{game.number}</span>
-          <div className="station-stop__landmark"><Icon size={21} strokeWidth={2.4} /></div>
-        </div>
-        <div>
-          <div className="station-stop__signboard">
-            <p className="station-stop__sign">{landmark[isArabic ? "ar" : "en"]}</p>
-            <div className="mb-2 flex items-center gap-1 text-sm" aria-label={`${stars} ${t("common.stars")} `}>
-              {[1, 2, 3].map((star) => <span key={star} className={star <= stars ? "text-[#ffc84d]" : "text-white/50"}>★</span>)}
+      <div className={`station-stop station-stop--${STATION_TONES[index]} station-stop--${landmark.cue} relative h-full`}>
+        <span className="station-stop__sidewalk" aria-hidden="true" />
+        <span className="station-stop__coin" aria-hidden="true">$</span>
+        <span className="station-stop__awning" aria-hidden="true" />
+        <span className="station-stop__facade" aria-hidden="true"><i /><i /><i /></span>
+        <span className="station-stop__prop" aria-hidden="true" />
+        {game.image ? <img src={game.image} alt="" className="station-stop__image" /> : <div className="station-stop__pattern" aria-hidden="true"><span /><span /><span /></div>}
+        <div className="station-stop__shade" />
+        <div className="relative z-10 flex min-h-[255px] flex-col justify-between p-5">
+          <div className="flex items-start justify-between gap-4">
+            <span className="station-number">{game.number}</span>
+            <div className="station-stop__landmark"><Icon size={21} strokeWidth={2.4} /></div>
+          </div>
+          <div>
+            <div className="station-stop__signboard">
+              <p className="station-stop__sign">{landmark[isArabic ? "ar" : "en"]}</p>
+              <div className="mb-2 flex items-center gap-1 text-sm" aria-label={`${stars} ${t("common.stars")} `}>
+                {[1, 2, 3].map((star) => <span key={star} className={star <= stars ? "text-[#ffc84d]" : "text-white/50"}>★</span>)}
+              </div>
+              <h3 className="font-display text-2xl leading-none text-white">{t(game.titleKey)}</h3>
+              <p className="mt-2 text-sm leading-5 text-white/88">{moveCopy}</p>
+              <button type="button" onClick={() => onSelect(game.id)} className="station-play mt-4">
+                {progress?.completed ? t("hub.replay") : t("common.play")} <span className="station-stop__next">{progress?.completed ? "↻" : "→"}</span>
+                <span aria-hidden="true">→</span>
+              </button>
             </div>
-            <h3 className="font-display text-2xl leading-none text-white">{t(game.titleKey)}</h3>
-            <p className="mt-2 text-sm leading-5 text-white/88">{moveCopy}</p>
-            <button type="button" onClick={() => onSelect(game.id)} className="station-play mt-4">
-              {progress?.completed ? t("hub.replay") : t("common.play")} <span className="station-stop__next">{progress?.completed ? "↻" : "→"}</span>
-              <span aria-hidden="true">→</span>
-            </button>
           </div>
         </div>
       </div>
@@ -103,7 +110,7 @@ export default function GameHub({ onSelect }: Props) {
             <p className="mt-6 max-w-xl text-lg leading-7 text-white/86">{t("hub.subtitle")}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#stations" className="hero-cta">{t("hub.route")} <span aria-hidden="true">↓</span></a>
-              <span className="hero-chip"><MapPinned size={17} /> {t("hub.stations")}</span>
+              <span className="hero-chip"><MapPinned size={17} /> {t("hub.stations", { count: GAME_REGISTRY.length })}</span>
             </div>
           </div>
           <aside className="profile-pocket" aria-label={t("hub.profile")}>
@@ -123,9 +130,9 @@ export default function GameHub({ onSelect }: Props) {
           <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#f26545]">{t("hub.mapLabel")}</p><h2 className="mt-1 font-display text-4xl text-[#102b4b]">{t("hub.ready")}</h2></div>
           <div className="route-status"><MapPinned size={18}/><span>{completeCount}/{GAME_REGISTRY.length}</span><small>{i18n.language.startsWith("ar") ? "محطات على الطريق" : "stops on your route"}</small></div>
         </div>
-        <div className="neighborhood-map" role="list" aria-label={t("hub.stations")}>
-          <svg className="neighborhood-route" viewBox="0 0 1200 3700" preserveAspectRatio="none" aria-hidden="true"><path className="neighborhood-route__road" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390" /><path className="neighborhood-route__dash" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390" /><g className="neighborhood-route__pins">{[[175,145],[535,365],[975,595],[975,900],[555,1115],[190,1310],[190,1590],[555,1800],[975,1990],[975,2260],[555,2490],[190,2700],[190,2960],[555,3170],[975,3390]].map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" />)}</g></svg>
-          <span className="map-prop map-prop--plaza" aria-hidden="true">◌</span><span className="map-prop map-prop--store" aria-hidden="true">⌂</span><span className="map-prop map-prop--trees" aria-hidden="true">✦</span><span className="map-prop map-prop--receipt" aria-hidden="true">▤</span><span className="map-prop map-prop--bench" aria-hidden="true">⌇</span><span className="map-prop map-prop--sign" aria-hidden="true">$</span><span className="map-prop map-prop--lemon" aria-hidden="true">◒</span><span className="map-prop map-prop--crate" aria-hidden="true">▣</span><span className="map-prop map-prop--hanger" aria-hidden="true">⌁</span><span className="map-prop map-prop--paw" aria-hidden="true">✽</span><span className="map-prop map-prop--cup" aria-hidden="true">♨</span>
+        <div className="neighborhood-map" role="list" aria-label={t("hub.stations", { count: GAME_REGISTRY.length })}>
+          <svg className="neighborhood-route" viewBox="0 0 1200 4900" preserveAspectRatio="none" aria-hidden="true"><path className="neighborhood-route__road" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390 L 975 3660 C 825 3700 720 3820 555 3890 S 830 4030 975 4110 S 725 4235 555 4300 S 350 4420 190 4485" /><path className="neighborhood-route__dash" d="M175 145 C 330 150 365 345 535 365 S 815 505 975 595 L 975 900 C 820 930 720 1095 555 1115 S 340 1215 190 1310 L 190 1590 C 340 1610 385 1770 555 1800 S 825 1905 975 1990 L 975 2260 C 825 2300 720 2420 555 2490 S 345 2640 190 2700 L 190 2960 C 330 2980 400 3115 555 3170 S 825 3300 975 3390 L 975 3660 C 825 3700 720 3820 555 3890 S 830 4030 975 4110 S 725 4235 555 4300 S 350 4420 190 4485" /><g className="neighborhood-route__pins">{[[175,145],[535,365],[975,595],[975,900],[555,1115],[190,1310],[190,1590],[555,1800],[975,1990],[975,2260],[555,2490],[190,2700],[190,2960],[555,3170],[975,3390],[975,3660],[555,3890],[975,4110],[555,4300],[190,4485]].map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" />)}</g></svg>
+          <span className="map-prop map-prop--plaza" aria-hidden="true">◌</span><span className="map-prop map-prop--store" aria-hidden="true">⌂</span><span className="map-prop map-prop--trees" aria-hidden="true">✦</span><span className="map-prop map-prop--receipt" aria-hidden="true">▤</span><span className="map-prop map-prop--bench" aria-hidden="true">⌇</span><span className="map-prop map-prop--sign" aria-hidden="true">$</span><span className="map-prop map-prop--lemon" aria-hidden="true">◒</span><span className="map-prop map-prop--crate" aria-hidden="true">▣</span><span className="map-prop map-prop--hanger" aria-hidden="true">⌁</span><span className="map-prop map-prop--paw" aria-hidden="true">✽</span><span className="map-prop map-prop--cup" aria-hidden="true">♨</span><span className="map-prop map-prop--handshake" aria-hidden="true">⌁</span><span className="map-prop map-prop--palette" aria-hidden="true">✦</span><span className="map-prop map-prop--launch" aria-hidden="true">↗</span>
           {GAME_REGISTRY.map((game) => <StationCard key={game.id} game={game} onSelect={onSelect} />)}
         </div>
       </section>
