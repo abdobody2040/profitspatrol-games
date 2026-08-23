@@ -1,14 +1,16 @@
 /** Design reminder: Shared progress is lightweight, device-persisted, and visually expressed as a single neighborhood journey. */
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { GameId } from "@/lib/game-registry";
+import { GAME_IDS, type GameId } from "@/lib/game-registry";
 
 export type GameProgress = { bestScore: number; stars: number; completed: boolean; plays: number };
 type Reward = { xp: number; coins: number };
+export type CapstoneProgress = { startupLaunchCompleted: boolean; curriculumComplete: boolean };
 type State = {
   xp: number;
   coins: number;
   games: Partial<Record<GameId, GameProgress>>;
+  capstone: CapstoneProgress;
   recordResult: (id: GameId, score: number, stars: number) => Reward;
   reset: () => void;
 };
@@ -21,6 +23,7 @@ export const useGameProgress = create<State>()(
       xp: 0,
       coins: 0,
       games: {},
+      capstone: { startupLaunchCompleted: false, curriculumComplete: false },
       recordResult: (id, score, stars) => {
         const previous = get().games[id] ?? freshGame();
         const improvedStars = Math.max(0, stars - previous.stars);
@@ -29,17 +32,18 @@ export const useGameProgress = create<State>()(
           xp: (firstCompletion ? 12 : 2) + improvedStars * 18,
           coins: (firstCompletion ? 3 : 1) + improvedStars * 4,
         };
-        set((state) => ({
-          xp: state.xp + reward.xp,
-          coins: state.coins + reward.coins,
-          games: {
+        set((state) => {
+          const nextGames = {
             ...state.games,
             [id]: { bestScore: Math.max(previous.bestScore, score), stars: Math.max(previous.stars, stars), completed: true, plays: previous.plays + 1 },
-          },
-        }));
+          };
+          const startupLaunchCompleted = state.capstone.startupLaunchCompleted || id === "startuplaunch";
+          const curriculumComplete = state.capstone.curriculumComplete || (startupLaunchCompleted && GAME_IDS.every((gameId) => nextGames[gameId]?.completed));
+          return { xp: state.xp + reward.xp, coins: state.coins + reward.coins, games: nextGames, capstone: { startupLaunchCompleted, curriculumComplete } };
+        });
         return reward;
       },
-      reset: () => set({ xp: 0, coins: 0, games: {} }),
+      reset: () => set({ xp: 0, coins: 0, games: {}, capstone: { startupLaunchCompleted: false, curriculumComplete: false } }),
     }),
     { name: "kidcap-profitspatrol-progress-v1" },
   ),

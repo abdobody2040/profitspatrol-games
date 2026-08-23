@@ -86,3 +86,18 @@
 - [x] Add Game 45 Business Tycoon with fictional multi-period product, price, marketing, operations, team, cash, competitor, customer, and strategy decisions.
 - [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district art to all forty-five games without duplicating infrastructure.
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
+
+## Batch 10 Sales, Marketing, E-Commerce & Entrepreneurship Capstone
+
+- [x] Read the complete Batch 10 specification and identify the required Games 46–50, mechanics, learning constraints, and bilingual copy.
+- [x] Inspect Games 01–45 plus the shared GameShell, registry, progression, localization, and route hub for Batch 10 extension points; correct prior games only if a real regression appears.
+- [x] Add Game 46 Sales Master with customer discovery, ethical recommendations, value explanation, objections, customer decisions, and follow-up feedback.
+- [x] Add Game 47 Marketing Machine with audience, message, channel, budget, campaign launch, simulated metrics, A/B testing, and adaptive optimization.
+- [x] Add Game 48 E-Commerce Rush with store set-up, pricing, traffic, orders, inventory, fulfilment, events, customer feedback, and profit-versus-revenue learning.
+- [x] Add Game 49 Pitch Battle with a fictional startup narrative, business choices, priority-led judges, dynamic questions, honest responses, and multiple successful pitch outcomes.
+- [x] Add Game 50 Startup Launch as a playable multi-stage capstone covering problem, customer, idea, product, prototype feedback, pricing, marketing, sales, operations, finance, competition, growth, and a multi-dimensional final report.
+- [x] Integrate Game 50 completion recognition within the existing saved progression architecture, adding only the minimum shared capstone metadata genuinely required for its badge, title, cosmetic, certificate, and curriculum-completion ceremony.
+- [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district styling to all fifty games without duplicating infrastructure.
+- [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
+- [ ] Save a verified Batch 10 checkpoint after completing all functional and visual checks.
+- [ ] Export the verified project to the user’s GitHub account or repository after saving the checkpoint.

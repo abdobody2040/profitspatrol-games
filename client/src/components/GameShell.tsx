@@ -14,6 +14,7 @@ export default function GameShell({ gameId, onExit }: Props) {
   const { t } = useTranslation();
   const game = getGame(gameId);
   const saved = useGameProgress((state) => state.games[gameId]);
+  const capstone = useGameProgress((state) => state.capstone);
   const recordResult = useGameProgress((state) => state.recordResult);
   const [phase, setPhase] = useState<Phase>("intro");
   const [runKey, setRunKey] = useState(0);
@@ -66,6 +67,7 @@ export default function GameShell({ gameId, onExit }: Props) {
               <p className="mt-4 max-w-md text-center leading-7 text-[#54708d]">{result.message}</p>
               <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-3"><div className="result-stat"><span>{t("common.score")}</span><b>{result.score}</b></div><div className="result-stat"><span>{t("common.stars")}</span><b className="text-[#f5b64d]">{"★".repeat(result.stars)}</b></div><div className="result-stat"><span>{t("common.xp")}</span><b>+{result.xp}</b></div></div>
               <div className="receipt mt-8 w-full max-w-md"><div className="flex items-center justify-between"><p className="font-display text-xl">{t("common.learningReceipt")}</p><Coins size={20} className="text-[#f26545]" /></div><ol className="mt-3 space-y-2">{learning.slice(0, 3).map((point, index) => <li key={point}><span>{index + 1}</span>{point}</li>)}</ol></div>
+              {gameId === "startuplaunch" && result.achieved && <div className="mt-5 w-full max-w-md rounded-[1.45rem] border-2 border-[#ffd765] bg-[#fff8df] p-5 text-center shadow-[0_8px_0_rgba(245,182,77,.2)]"><p className="text-xs font-black uppercase tracking-[0.14em] text-[#a86c10]">{t("games.startuplaunch.capstoneBadge")}</p><h3 className="mt-2 font-display text-3xl leading-none text-[#102b4b]">{t("games.startuplaunch.capstoneTitle")}</h3><p className="mt-3 text-sm leading-6 text-[#54708d]">{t(capstone.curriculumComplete ? "games.startuplaunch.curriculumComplete" : "games.startuplaunch.capstoneCertificate")}</p></div>}
               <div className="mt-7 flex flex-wrap justify-center gap-3"><button type="button" onClick={begin} className="primary-action">{t("common.retry")} <RotateCcw size={17} /></button><button type="button" onClick={onExit} className="secondary-action">{t("common.back")} <X size={17} /></button></div>
             </motion.div>}
           </AnimatePresence>

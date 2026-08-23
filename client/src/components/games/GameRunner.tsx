@@ -10,9 +10,11 @@ import { BusinessCrisis, InventoryMaster, SupplyChainRush, TeamBuilder, TimeTyco
 import { CustomerFeedback, IdeaFactory, InnovationChallenge, ProductLab, PrototypeRush } from "./Batch07Games";
 import { CommunicationLab, DealMaker, LeadershipQuest, NegotiationArena, TeamCaptain } from "./Batch08Games";
 import { BusinessTycoon, CompetitorHunt, GrowthEngine, MarketWars, StrategyEmpire } from "./Batch09Games";
+import { ECommerceRush, MarketingMachine, PitchBattle, SalesMasterTen, StartupLaunch } from "./Batch10Games";
 import "./game-ui.css";
 import "./batch08.css";
 import "./batch09.css";
+import "./batch10.css";
 
 export type GameResult = { achieved: boolean; score: number; stars: number; message: string };
 type Props = { gameId: GameId; paused: boolean; onEnd: (result: GameResult) => void };
@@ -65,6 +67,11 @@ export function GameRunner({ gameId, paused, onEnd }: Props) {
     case "competitorhunt": return <CompetitorHunt paused={paused} onEnd={onEnd} />;
     case "growthengine": return <GrowthEngine paused={paused} onEnd={onEnd} />;
     case "businesstycoon": return <BusinessTycoon paused={paused} onEnd={onEnd} />;
+    case "salesmasterten": return <SalesMasterTen paused={paused} onEnd={onEnd} />;
+    case "marketingmachine": return <MarketingMachine paused={paused} onEnd={onEnd} />;
+    case "ecommercerush": return <ECommerceRush paused={paused} onEnd={onEnd} />;
+    case "pitchbattle": return <PitchBattle paused={paused} onEnd={onEnd} />;
+    case "startuplaunch": return <StartupLaunch paused={paused} onEnd={onEnd} />;
   }
 }
 
