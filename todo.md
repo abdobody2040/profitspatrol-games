@@ -117,4 +117,5 @@
 - [x] Add visible achievement badges tied to existing persisted game progress, including the Startup Launch capstone recognition.
 - [x] Add optional interface sound feedback with a persistent mute control and respectful accessibility defaults.
 - [x] Validate the enhanced experience across desktop and mobile, keyboard and touch inputs, Arabic RTL, TypeScript, test suite, and production build.
-- [ ] Rename the private GitHub repository to `profitspatrol`, update the configured remote, save the verified revision, and push the upgrade.
+- [x] Attempt to rename the private GitHub repository to `profitspatrol`; retain the existing private `Profitspatrol` repository after discovering the name conflict.
+- [x] Rename the current private GitHub repository to `profitspatrol-games`, update the configured remote, and verify the already-pushed upgrade at its final URL.
