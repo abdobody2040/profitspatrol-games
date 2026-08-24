@@ -127,3 +127,7 @@
 - [x] Improve shared game-board framing, progress feedback, decision controls, and results presentation while preserving touch targets, keyboard use, and Arabic RTL behavior.
 - [x] Verify representative games and the complete hub at desktop, tablet, and mobile widths, then run regression tests, TypeScript checks, and a production build.
 - [x] Save the visual-upgrade checkpoint and push the verified changes to the private `profitspatrol-games` repository.
+
+## Project Handoff Documentation
+
+- [x] Replace the supplied handoff template placeholders with verified ProfitsPatrol application details, copy the completed file into the repository, and push it to `profitspatrol-games`.
