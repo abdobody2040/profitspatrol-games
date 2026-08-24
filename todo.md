@@ -100,4 +100,4 @@
 - [x] Extend the route map, rewards, saved progress, localized copy, Arabic RTL presentation, and district styling to all fifty games without duplicating infrastructure.
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
 - [x] Save a verified Batch 10 checkpoint after completing all functional and visual checks.
-- [ ] Export the verified project to the user’s GitHub account or repository after saving the checkpoint.
+- [x] Export the verified project to the user’s GitHub account or repository after saving the checkpoint.
