@@ -4,8 +4,11 @@ import { ArrowLeft, Coins, Pause, Play, RotateCcw, Star, Target, X } from "lucid
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { getGame, type GameId } from "@/lib/game-registry";
+import { buildProgressSummary, type Achievement } from "@/lib/progress-summary";
+import { playSound } from "@/lib/sound";
 import { useGameProgress } from "@/store/game-progress";
 import { GameRunner, type GameResult } from "@/components/games/GameRunner";
+import SoundToggle from "@/components/SoundToggle";
 
 type Props = { gameId: GameId; onExit: () => void };
 type Phase = "intro" | "playing" | "paused" | "results";
@@ -14,17 +17,24 @@ export default function GameShell({ gameId, onExit }: Props) {
   const { t } = useTranslation();
   const game = getGame(gameId);
   const saved = useGameProgress((state) => state.games[gameId]);
+  const games = useGameProgress((state) => state.games);
   const capstone = useGameProgress((state) => state.capstone);
+  const soundEnabled = useGameProgress((state) => state.soundEnabled);
   const recordResult = useGameProgress((state) => state.recordResult);
   const [phase, setPhase] = useState<Phase>("intro");
   const [runKey, setRunKey] = useState(0);
-  const [result, setResult] = useState<(GameResult & { xp: number; coins: number }) | null>(null);
+  const [result, setResult] = useState<(GameResult & { xp: number; coins: number; unlocked: Achievement[] }) | null>(null);
   const learning = t(`games.${gameId}.learning`, { returnObjects: true }) as string[];
 
-  const begin = () => { setRunKey((key) => key + 1); setResult(null); setPhase("playing"); };
+  const begin = () => { playSound("tap", soundEnabled); setRunKey((key) => key + 1); setResult(null); setPhase("playing"); };
   const complete = (nextResult: GameResult) => {
+    const before = buildProgressSummary({ games, capstone });
     const reward = nextResult.achieved ? recordResult(gameId, nextResult.score, nextResult.stars) : { xp: 0, coins: 0 };
-    setResult({ ...nextResult, ...reward });
+    const afterState = useGameProgress.getState();
+    const after = buildProgressSummary({ games: afterState.games, capstone: afterState.capstone });
+    const unlocked = after.achievements.filter((achievement) => achievement.earned && !before.achievements.find((item) => item.key === achievement.key)?.earned);
+    playSound(nextResult.achieved ? "success" : "retry", soundEnabled);
+    setResult({ ...nextResult, ...reward, unlocked });
     setPhase("results");
   };
 
@@ -34,7 +44,7 @@ export default function GameShell({ gameId, onExit }: Props) {
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-10">
           <button type="button" onClick={onExit} className="back-link"><ArrowLeft size={18} /> {t("common.back")}</button>
           <div className="hidden items-center gap-2 sm:flex"><span className="top-badge">{game.number}</span><span className="font-display text-xl">{t(game.titleKey)}</span></div>
-          {phase === "playing" || phase === "paused" ? <button type="button" onClick={() => setPhase(phase === "paused" ? "playing" : "paused")} className="pause-button">{phase === "paused" ? <Play size={16} /> : <Pause size={16} />}{phase === "paused" ? t("common.resume") : t("common.pause")}</button> : <span className="top-badge">{game.number}</span>}
+          <div className="flex items-center gap-2"><SoundToggle />{phase === "playing" || phase === "paused" ? <button type="button" onClick={() => setPhase(phase === "paused" ? "playing" : "paused")} className="pause-button">{phase === "paused" ? <Play size={16} /> : <Pause size={16} />}{phase === "paused" ? t("common.resume") : t("common.pause")}</button> : <span className="top-badge">{game.number}</span>}</div>
         </div>
       </header>
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-7 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-10">
@@ -66,6 +76,7 @@ export default function GameShell({ gameId, onExit }: Props) {
               <h2 className="mt-2 font-display text-5xl leading-none">{result.achieved ? t("common.win") : t("common.loss")}</h2>
               <p className="mt-4 max-w-md text-center leading-7 text-[#54708d]">{result.message}</p>
               <div className="mt-8 grid w-full max-w-md grid-cols-3 gap-3"><div className="result-stat"><span>{t("common.score")}</span><b>{result.score}</b></div><div className="result-stat"><span>{t("common.stars")}</span><b className="text-[#f5b64d]">{"★".repeat(result.stars)}</b></div><div className="result-stat"><span>{t("common.xp")}</span><b>+{result.xp}</b></div></div>
+              {result.unlocked.length > 0 && <div className="achievement-unlock mt-5 w-full max-w-md"><p>{t("progressCenter.unlocked")}</p><div>{result.unlocked.map((achievement) => <span key={achievement.key}>{t(achievement.titleKey)}</span>)}</div></div>}
               <div className="receipt mt-8 w-full max-w-md"><div className="flex items-center justify-between"><p className="font-display text-xl">{t("common.learningReceipt")}</p><Coins size={20} className="text-[#f26545]" /></div><ol className="mt-3 space-y-2">{learning.slice(0, 3).map((point, index) => <li key={point}><span>{index + 1}</span>{point}</li>)}</ol></div>
               {gameId === "startuplaunch" && result.achieved && <div className="mt-5 w-full max-w-md rounded-[1.45rem] border-2 border-[#ffd765] bg-[#fff8df] p-5 text-center shadow-[0_8px_0_rgba(245,182,77,.2)]"><p className="text-xs font-black uppercase tracking-[0.14em] text-[#a86c10]">{t("games.startuplaunch.capstoneBadge")}</p><h3 className="mt-2 font-display text-3xl leading-none text-[#102b4b]">{t("games.startuplaunch.capstoneTitle")}</h3><p className="mt-3 text-sm leading-6 text-[#54708d]">{t(capstone.curriculumComplete ? "games.startuplaunch.curriculumComplete" : "games.startuplaunch.capstoneCertificate")}</p></div>}
               <div className="mt-7 flex flex-wrap justify-center gap-3"><button type="button" onClick={begin} className="primary-action">{t("common.retry")} <RotateCcw size={17} /></button><button type="button" onClick={onExit} className="secondary-action">{t("common.back")} <X size={17} /></button></div>

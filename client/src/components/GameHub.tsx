@@ -1,14 +1,18 @@
 /** Design reminder: This hub is a tactile business-neighborhood map with coral decision points and playful asymmetric motion. */
 import { motion } from "framer-motion";
-import { BadgePercent, CircleDollarSign, Coins, MapPinned, PiggyBank, ReceiptText, Route, Search, Shapes, Store, Target, WalletCards } from "lucide-react";
+import { BadgePercent, CircleDollarSign, Coins, MapPinned, Medal, PiggyBank, ReceiptText, Route, Search, Shapes, Store, Target, Trophy, WalletCards } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GAME_REGISTRY, type GameDefinition, type GameId } from "@/lib/game-registry";
+import { buildProgressSummary, TOTAL_STARS, type Achievement } from "@/lib/progress-summary";
 import { useGameProgress } from "@/store/game-progress";
+import SoundToggle from "@/components/SoundToggle";
 import "./batch08-map.css";
 import "./batch09-map.css";
 import "./batch10-map.css";
 
 type Props = { onSelect: (id: GameId) => void };
+
+const achievementIcon = (achievement: Achievement) => achievement.key === "fullJourney" ? <Trophy size={20} /> : achievement.key === "startupLaunch" ? <Medal size={20} /> : <BadgePercent size={20} />;
 
 const ICONS = { coins: Coins, shapes: Shapes, piggy: PiggyBank, wallet: WalletCards, target: Target, receipt: ReceiptText, search: Search, badge: BadgePercent, store: Store, route: Route };
 const LANDMARKS = [
@@ -123,7 +127,9 @@ export default function GameHub({ onSelect }: Props) {
   const xp = useGameProgress((state) => state.xp);
   const coins = useGameProgress((state) => state.coins);
   const games = useGameProgress((state) => state.games);
-  const completeCount = GAME_REGISTRY.filter((game) => games[game.id]?.completed).length;
+  const capstone = useGameProgress((state) => state.capstone);
+  const summary = buildProgressSummary({ games, capstone });
+  const completeCount = summary.completed;
   const toggleLanguage = () => void i18n.changeLanguage(i18n.language.startsWith("ar") ? "en" : "ar");
 
   return (
@@ -136,7 +142,7 @@ export default function GameHub({ onSelect }: Props) {
             <span className="brand-badge"><img src="/manus-storage/profitspatrol-compass-coin-logo_eaaf0464.png" alt="" className="h-11 w-11 object-contain" /></span>
             <div><p className="brand-wordmark"><span>Profit</span><b>Patrol</b></p><p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-white/70">Explorer Team</p></div>
           </div>
-          <button type="button" onClick={toggleLanguage} className="language-toggle">{t("common.language")}</button>
+          <div className="flex items-center gap-2"><SoundToggle /><button type="button" onClick={toggleLanguage} className="language-toggle">{t("common.language")}</button></div>
         </header>
         <div className="relative z-10 mx-auto grid max-w-7xl gap-10 pb-4 pt-16 lg:grid-cols-[minmax(0,0.78fr)_330px] lg:items-end">
           <div className="max-w-2xl">
@@ -160,6 +166,23 @@ export default function GameHub({ onSelect }: Props) {
         </div>
       </section>
 
+      <section className="progress-center mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-10" aria-labelledby="progress-center-title">
+        <div className="progress-center__heading">
+          <div><p className="section-kicker">{t("progressCenter.eyebrow")}</p><h2 id="progress-center-title">{t("progressCenter.title")}</h2><p>{t("progressCenter.description")}</p></div>
+          <div className="progress-center__field-mark"><img src="/manus-storage/profitspatrol-compass-coin-logo_eaaf0464.png" alt="" /><div className="progress-center__privacy">{t("progressCenter.privacy")}</div></div>
+        </div>
+        <div className="progress-overview" aria-label={t("progressCenter.summary")}> 
+          <div className="progress-overview__stat"><span>{t("progressCenter.completed")}</span><strong>{summary.completed}<small>/{summary.total}</small></strong></div>
+          <div className="progress-overview__stat"><span>{t("progressCenter.stars")}</span><strong>{summary.stars}<small>/{TOTAL_STARS}</small></strong></div>
+          <div className="progress-overview__stat"><span>{t("common.xp")}</span><strong>{xp}</strong></div>
+          <div className="progress-overview__stat"><span>{t("common.coins")}</span><strong>{coins}</strong></div>
+        </div>
+        <div className="progress-center__grid">
+          <div className="district-panel"><div className="panel-heading"><div><p className="section-kicker">{t("progressCenter.districtKicker")}</p><h3>{t("progressCenter.districtTitle")}</h3></div><span>{summary.completed}/{summary.total}</span></div><div className="district-list">{summary.districts.map((district) => <div className="district-row" key={district.key}><div className="flex items-center justify-between gap-3"><span>{t(district.titleKey)}</span><b>{district.completed}/{district.total}</b></div><div className="district-meter" role="progressbar" aria-label={t(district.titleKey)} aria-valuenow={district.completed} aria-valuemin={0} aria-valuemax={district.total}><i style={{ width: `${(district.completed / district.total) * 100}%` }} /></div></div>)}</div></div>
+          <div className="achievement-panel"><div className="panel-heading"><div><p className="section-kicker">{t("progressCenter.achievementKicker")}</p><h3>{t("progressCenter.achievementTitle")}</h3></div><span>{summary.earnedAchievements.length}/{summary.achievements.length}</span></div><div className="achievement-list">{summary.achievements.map((achievement) => <article className={`achievement-chip ${achievement.earned ? "achievement-chip--earned" : ""}`} key={achievement.key}><span className="achievement-chip__icon">{achievementIcon(achievement)}</span><div><h4>{t(achievement.titleKey)}</h4><p>{t(achievement.descriptionKey)}</p><small>{achievement.earned ? t("progressCenter.earned") : t("progressCenter.next", { current: Math.min(achievement.current, achievement.target), target: achievement.target })}</small></div></article>)}</div></div>
+        </div>
+      </section>
+
       <section id="stations" className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-10">
         <div className="relative z-10 mb-9 flex flex-wrap items-end justify-between gap-3">
           <div><p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#f26545]">{t("hub.mapLabel")}</p><h2 className="mt-1 font-display text-4xl text-[#102b4b]">{t("hub.ready")}</h2></div>
@@ -169,6 +192,7 @@ export default function GameHub({ onSelect }: Props) {
           <svg className="neighborhood-route" viewBox="0 0 1200 11750" preserveAspectRatio="none" aria-hidden="true"><path className="neighborhood-route__road" d={ROUTE_PATH} /><path className="neighborhood-route__dash" d={ROUTE_PATH} /><g className="neighborhood-route__pins">{ROUTE_PINS.map(([cx,cy]) => <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="13" />)}</g></svg>
           <span className="map-prop map-prop--plaza" aria-hidden="true">◌</span><span className="map-prop map-prop--store" aria-hidden="true">⌂</span><span className="map-prop map-prop--trees" aria-hidden="true">✦</span><span className="map-prop map-prop--receipt" aria-hidden="true">▤</span><span className="map-prop map-prop--bench" aria-hidden="true">⌇</span><span className="map-prop map-prop--sign" aria-hidden="true">$</span><span className="map-prop map-prop--lemon" aria-hidden="true">◒</span><span className="map-prop map-prop--crate" aria-hidden="true">▣</span><span className="map-prop map-prop--hanger" aria-hidden="true">⌁</span><span className="map-prop map-prop--paw" aria-hidden="true">✽</span><span className="map-prop map-prop--cup" aria-hidden="true">♨</span><span className="map-prop map-prop--handshake" aria-hidden="true">⌁</span><span className="map-prop map-prop--palette" aria-hidden="true">✦</span><span className="map-prop map-prop--launch" aria-hidden="true">↗</span><span className="map-prop map-prop--wave" aria-hidden="true">≋</span><span className="map-prop map-prop--radar" aria-hidden="true">◉</span><span className="map-prop map-prop--bars" aria-hidden="true">▥</span><span className="map-prop map-prop--peak" aria-hidden="true">△</span><span className="map-prop map-prop--shield" aria-hidden="true">⌾</span><span className="map-prop map-prop--clock" aria-hidden="true">◷</span><span className="map-prop map-prop--team" aria-hidden="true">♧</span><span className="map-prop map-prop--truck" aria-hidden="true">▣</span><span className="map-prop map-prop--stock" aria-hidden="true">▥</span><span className="map-prop map-prop--alert" aria-hidden="true">!</span><span className="map-prop map-prop--bulb" aria-hidden="true">✦</span><span className="map-prop map-prop--box" aria-hidden="true">▣</span><span className="map-prop map-prop--wrench" aria-hidden="true">⌁</span><span className="map-prop map-prop--voice" aria-hidden="true">◌</span><span className="map-prop map-prop--rocket" aria-hidden="true">↗</span><span className="map-prop map-prop--handshake2" aria-hidden="true">↔</span><span className="map-prop map-prop--captain" aria-hidden="true">♧</span><span className="map-prop map-prop--contract" aria-hidden="true">▤</span><span className="map-prop map-prop--message" aria-hidden="true">◌</span><span className="map-prop map-prop--compass" aria-hidden="true">✦</span><span className="map-prop map-prop--market-signal" aria-hidden="true">↔</span><span className="map-prop map-prop--strategy-bars" aria-hidden="true">▥</span><span className="map-prop map-prop--scout" aria-hidden="true">⌕</span><span className="map-prop map-prop--growth-arrow" aria-hidden="true">↗</span><span className="map-prop map-prop--tower" aria-hidden="true">▦</span>
           <span className="map-prop map-prop--sales-heart" aria-hidden="true">♥</span><span className="map-prop map-prop--campaign-dots" aria-hidden="true">▥</span><span className="map-prop map-prop--cart" aria-hidden="true">▣</span><span className="map-prop map-prop--pitch-mic" aria-hidden="true">✦</span><span className="map-prop map-prop--launch-ribbon" aria-hidden="true">★</span>
+          <span className="route-district-marker route-district-marker--1" aria-hidden="true">{t("progressCenter.districts.money")}</span><span className="route-district-marker route-district-marker--2" aria-hidden="true">{t("progressCenter.districts.builders")}</span><span className="route-district-marker route-district-marker--3" aria-hidden="true">{t("progressCenter.districts.risk")}</span><span className="route-district-marker route-district-marker--4" aria-hidden="true">{t("progressCenter.districts.operations")}</span><span className="route-district-marker route-district-marker--5" aria-hidden="true">{t("progressCenter.districts.innovation")}</span><span className="route-district-marker route-district-marker--6" aria-hidden="true">{t("progressCenter.districts.leadership")}</span><span className="route-district-marker route-district-marker--7" aria-hidden="true">{t("progressCenter.districts.strategy")}</span><span className="route-district-marker route-district-marker--8" aria-hidden="true">{t("progressCenter.districts.launch")}</span>
           {GAME_REGISTRY.map((game) => <StationCard key={game.id} game={game} onSelect={onSelect} />)}
         </div>
       </section>

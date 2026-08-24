@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, BriefcaseBusiness, CircleDollarSign, Coins, Hand
 import { useEffect, useMemo, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import type { GameId } from "@/lib/game-registry";
+import { moveLane } from "@/lib/spatial-controls";
 import { AdAgency, CustomerQuest } from "./Batch04Games";
 import { BrandBuilder, MarketingMix, SalesMaster } from "./Batch04More";
 import { CompoundMountain, InvestmentIsland, PortfolioQuest, RiskRadar, ScamDetective } from "./Batch05Games";
@@ -91,8 +92,8 @@ function CoinCatcher({ paused, onEnd }: Omit<Props, "gameId">) {
   useEffect(() => {
     const keyboard = (event: KeyboardEvent) => {
       if (paused) return;
-      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") setLane((current) => Math.max(0, current - 1));
-      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") setLane((current) => Math.min(2, current + 1));
+      if (event.key === "ArrowLeft" || event.key.toLowerCase() === "a") setLane((current) => moveLane(current, "left"));
+      if (event.key === "ArrowRight" || event.key.toLowerCase() === "d") setLane((current) => moveLane(current, "right"));
     };
     window.addEventListener("keydown", keyboard);
     return () => window.removeEventListener("keydown", keyboard);
@@ -132,7 +133,7 @@ function CoinCatcher({ paused, onEnd }: Omit<Props, "gameId">) {
       <div className="catcher-player" style={{ left: `calc(${lane * 33.333}% + 16.666%)` }}><span>👜</span></div>
       <div className="catcher-feedback">{feedback}</div>
     </div>
-    <div className="mobile-steer"><button type="button" disabled={paused} onClick={() => setLane((current) => Math.max(0, current - 1))}><ArrowLeft /> </button><div><span className="text-[#54708d]">A</span> / <span className="text-[#54708d]">D</span></div><button type="button" disabled={paused} onClick={() => setLane((current) => Math.min(2, current + 1))}><ArrowRight /></button></div>
+    <div className="mobile-steer"><button type="button" disabled={paused} onClick={() => setLane((current) => moveLane(current, "left"))}><ArrowLeft /> </button><div><span className="text-[#54708d]">A</span> / <span className="text-[#54708d]">D</span></div><button type="button" disabled={paused} onClick={() => setLane((current) => moveLane(current, "right"))}><ArrowRight /></button></div>
   </div>;
 }
 

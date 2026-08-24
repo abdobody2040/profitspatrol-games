@@ -11,7 +11,10 @@ type State = {
   coins: number;
   games: Partial<Record<GameId, GameProgress>>;
   capstone: CapstoneProgress;
+  soundEnabled: boolean;
   recordResult: (id: GameId, score: number, stars: number) => Reward;
+  toggleSound: () => void;
+  setSoundEnabled: (enabled: boolean) => void;
   reset: () => void;
 };
 
@@ -24,6 +27,7 @@ export const useGameProgress = create<State>()(
       coins: 0,
       games: {},
       capstone: { startupLaunchCompleted: false, curriculumComplete: false },
+      soundEnabled: true,
       recordResult: (id, score, stars) => {
         const previous = get().games[id] ?? freshGame();
         const improvedStars = Math.max(0, stars - previous.stars);
@@ -43,6 +47,8 @@ export const useGameProgress = create<State>()(
         });
         return reward;
       },
+      toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
+      setSoundEnabled: (enabled) => set({ soundEnabled: enabled }),
       reset: () => set({ xp: 0, coins: 0, games: {}, capstone: { startupLaunchCompleted: false, curriculumComplete: false } }),
     }),
     { name: "kidcap-profitspatrol-progress-v1" },

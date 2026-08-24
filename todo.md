@@ -108,3 +108,13 @@
 - [x] Identify the shared keyboard and touch control pattern used by directional games, then correct Arabic RTL presentation so left and right actions match their visible arrows and game movement.
 - [x] Verify the branding removal and Arabic direction controls in a representative live game, then run TypeScript and production-build checks.
 - [x] Save the verified revision and push it to the existing private GitHub repository.
+
+## ProfitsPatrol Quality & Growth Upgrade
+
+- [x] Inspect existing test tooling, progress data, responsive layout, accessibility controls, and private GitHub repository status before implementing the upgrade.
+- [x] Add automated regression tests for the shared game registry, reward progression, capstone recognition, and direction-control behavior.
+- [x] Create a parent/teacher progress view that summarizes completed stations, rewards, learning districts, achievements, and capstone status without exposing personal data.
+- [x] Add visible achievement badges tied to existing persisted game progress, including the Startup Launch capstone recognition.
+- [x] Add optional interface sound feedback with a persistent mute control and respectful accessibility defaults.
+- [x] Validate the enhanced experience across desktop and mobile, keyboard and touch inputs, Arabic RTL, TypeScript, test suite, and production build.
+- [ ] Rename the private GitHub repository to `profitspatrol`, update the configured remote, save the verified revision, and push the upgrade.
