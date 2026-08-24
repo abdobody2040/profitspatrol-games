@@ -107,4 +107,4 @@
 - [x] Locate and remove every visible “KidCap HQ” brand label from the app title, hero, navigation, metadata, and user-facing localization resources while preserving ProfitsPatrol branding.
 - [x] Identify the shared keyboard and touch control pattern used by directional games, then correct Arabic RTL presentation so left and right actions match their visible arrows and game movement.
 - [x] Verify the branding removal and Arabic direction controls in a representative live game, then run TypeScript and production-build checks.
-- [ ] Save the verified revision and push it to the existing private GitHub repository.
+- [x] Save the verified revision and push it to the existing private GitHub repository.
