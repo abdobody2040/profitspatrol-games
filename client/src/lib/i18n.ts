@@ -36,7 +36,7 @@ export const resources = {
         loss: "Mission paused",
       },
       hub: {
-        eyebrow: "KidCap HQ · Business Adventure",
+        eyebrow: "Business Adventure",
         title: "Build money skills by making real moves.",
         subtitle: "Choose a station, make a decision, and watch your business neighborhood respond.",
         profile: "Patrol profile",
@@ -451,7 +451,7 @@ export const resources = {
         loss: "توقفت المهمة",
       },
       hub: {
-        eyebrow: "KidCap HQ · مغامرة الأعمال",
+        eyebrow: "مغامرة الأعمال",
         title: "ابنِ مهارات المال عبر قرارات حقيقية.",
         subtitle: "اختر محطة، اتخذ قراراً، ثم شاهد حيّ أعمالك يتفاعل معه.",
         profile: "ملف الدورية",

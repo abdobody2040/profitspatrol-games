@@ -134,7 +134,7 @@ export default function GameHub({ onSelect }: Props) {
         <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="brand-badge"><img src="/manus-storage/profitspatrol-compass-coin-logo_eaaf0464.png" alt="" className="h-11 w-11 object-contain" /></span>
-            <div><p className="brand-wordmark"><span>Profit</span><b>Patrol</b></p><p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-white/70">KidCap HQ · Explorer Team</p></div>
+            <div><p className="brand-wordmark"><span>Profit</span><b>Patrol</b></p><p className="mt-1 text-xs font-bold uppercase tracking-[0.16em] text-white/70">Explorer Team</p></div>
           </div>
           <button type="button" onClick={toggleLanguage} className="language-toggle">{t("common.language")}</button>
         </header>

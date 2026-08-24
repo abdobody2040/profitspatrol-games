@@ -101,3 +101,10 @@
 - [x] Run functional gameplay, responsive, localization, TypeScript, build, regression, and complete GameShell lifecycle verification before delivery.
 - [x] Save a verified Batch 10 checkpoint after completing all functional and visual checks.
 - [x] Export the verified project to the user’s GitHub account or repository after saving the checkpoint.
+
+## Branding & Arabic Controls Revision
+
+- [x] Locate and remove every visible “KidCap HQ” brand label from the app title, hero, navigation, metadata, and user-facing localization resources while preserving ProfitsPatrol branding.
+- [x] Identify the shared keyboard and touch control pattern used by directional games, then correct Arabic RTL presentation so left and right actions match their visible arrows and game movement.
+- [x] Verify the branding removal and Arabic direction controls in a representative live game, then run TypeScript and production-build checks.
+- [ ] Save the verified revision and push it to the existing private GitHub repository.
