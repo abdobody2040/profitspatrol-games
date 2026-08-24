@@ -126,4 +126,4 @@
 - [x] Strengthen all station cards with place-first storefront details, richer status treatment, and clearer visual hierarchy across the 50-stop route.
 - [x] Improve shared game-board framing, progress feedback, decision controls, and results presentation while preserving touch targets, keyboard use, and Arabic RTL behavior.
 - [x] Verify representative games and the complete hub at desktop, tablet, and mobile widths, then run regression tests, TypeScript checks, and a production build.
-- [ ] Save the visual-upgrade checkpoint and push the verified changes to the private `profitspatrol-games` repository.
+- [x] Save the visual-upgrade checkpoint and push the verified changes to the private `profitspatrol-games` repository.
