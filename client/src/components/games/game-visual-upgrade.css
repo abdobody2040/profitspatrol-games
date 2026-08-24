@@ -1,0 +1,47 @@
+/** Design reminder: Paper-craft neighborhood detail, shallow physical depth, and bright central decision space define every shared game board. */
+
+.game-shell-canvas { isolation:isolate; background:#fffdf6; }
+.game-shell-canvas::before { position:absolute; z-index:0; inset:0; content:""; opacity:.24; background-position:center; background-size:cover; pointer-events:none; }
+.game-shell-canvas--money::before { background-image:url("/manus-storage/profitspatrol-money-market-board_124e1829.png"); }
+.game-shell-canvas--venture::before { background-image:url("/manus-storage/profitspatrol-venture-workshop-board_1a7c1ee4.png"); }
+.game-shell-canvas--strategy::before { background-image:url("/manus-storage/profitspatrol-strategy-hall-board_6fdf93e8.png"); }
+.game-shell-canvas--launch::before { background-image:url("/manus-storage/profitspatrol-launch-park-board_46ad542b.png"); }
+.game-shell-canvas > * { position:relative; z-index:1; }
+
+.mission-ledger { position:relative; overflow:hidden; isolation:isolate; border:2px solid rgba(255,255,255,.1); background:linear-gradient(160deg,#102b4b 0%,#173b63 72%,#0e2a4a 100%)!important; }
+.mission-ledger > * { position:relative; z-index:1; }
+.mission-ledger::before { position:absolute; z-index:0; inset:0; content:""; opacity:.32; background:radial-gradient(circle at 16% 19%,#ffd765 0 3px,transparent 4px),radial-gradient(circle at 78% 70%,#47b7a0 0 4px,transparent 5px),linear-gradient(135deg,transparent 0 46%,rgba(255,255,255,.06) 47% 49%,transparent 50%); }
+.mission-ledger__roof { position:absolute; z-index:0; top:0; left:0; display:flex; width:100%; height:24px; overflow:hidden; background:#ff6b4a; transform:skewY(-3deg) translateY(-10px); }
+.mission-ledger__roof i { flex:1; border-right:2px solid rgba(255,255,255,.25); background:linear-gradient(135deg,rgba(255,255,255,.26) 0 48%,transparent 49%); }
+.mission-ledger__beacon { position:absolute; z-index:0; right:1.25rem; top:1.35rem; display:grid; place-items:center; width:42px; height:42px; border:2px solid rgba(255,215,101,.45); border-radius:14px 18px 14px 20px; color:#ffd765; background:rgba(255,255,255,.08); box-shadow:0 5px 0 rgba(0,0,0,.14); transform:rotate(8deg); }
+
+.game-stage,.venture-stage { position:relative; isolation:isolate; overflow:hidden; border-top:1px solid rgba(16,43,75,.06); background:rgba(255,253,246,.82)!important; }
+.game-stage::before,.venture-stage::before { position:absolute; z-index:0; inset:0; content:""; opacity:.7; pointer-events:none; background-image:radial-gradient(circle at 20% 20%,rgba(255,215,101,.2) 0 4px,transparent 5px),radial-gradient(circle at 83% 78%,rgba(71,183,160,.16) 0 6px,transparent 7px),linear-gradient(90deg,rgba(16,43,75,.035) 1px,transparent 1px),linear-gradient(0deg,rgba(16,43,75,.035) 1px,transparent 1px); background-size:auto,auto,28px 28px,28px 28px; }
+.game-stage > *,.venture-stage > * { position:relative; z-index:1; }
+.game-play-header { max-width:850px; border:1px solid rgba(16,43,75,.1); border-radius:1rem; padding:.65rem .8rem; background:rgba(255,255,255,.74); box-shadow:0 7px 0 rgba(16,43,75,.07); backdrop-filter:blur(6px); }
+.game-play-header__icon { box-shadow:0 5px 0 #0c2139; transform:rotate(-4deg); }
+.decision-card,.sorter-board,.budget-board,.sprint-board,.detective-board,.discount-board,.cashflow-board,.maze-board,.venture-board { border:2px solid rgba(16,43,75,.1)!important; box-shadow:0 9px 0 rgba(16,43,75,.08),0 22px 42px rgba(40,59,70,.1)!important; background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(255,253,247,.94))!important; }
+.decision-card { overflow:hidden; }
+.decision-card::before,.venture-board::before { position:absolute; top:0; left:9%; width:82%; height:8px; border-radius:0 0 10px 10px; content:""; background:repeating-linear-gradient(90deg,#ff6b4a 0 18px,#ffd765 18px 36px); opacity:.72; }
+.choice-button,.action-trio button,.price-options button,.cash-choices button,.maze-choices button,.offer-card,.venture-choice { position:relative; border:2px solid rgba(16,43,75,.08)!important; box-shadow:0 5px 0 rgba(16,43,75,.11); }
+.choice-button::after,.action-trio button::after,.price-options button::after,.cash-choices button::after,.maze-choices button::after,.offer-card::after,.venture-choice::after { position:absolute; top:8px; right:9px; width:7px; height:7px; border-radius:999px; content:""; background:rgba(255,255,255,.85); box-shadow:0 0 0 2px rgba(16,43,75,.06); }
+.choice-button:not(:disabled):hover,.action-trio button:not(:disabled):hover,.price-options button:not(:disabled):hover,.cash-choices button:not(:disabled):hover,.maze-choices button:not(:disabled):hover,.offer-card:not(:disabled):hover,.venture-choice:not(:disabled):hover { transform:translateY(-4px) rotate(-.25deg); box-shadow:0 9px 0 rgba(16,43,75,.12),0 17px 25px rgba(40,59,70,.12); }
+.money-piece,.catcher-player,.falling-token,.cash-bubble,.maze-marker { border:2px solid rgba(255,255,255,.55); }
+.target-vault,.sale-ticket,.checkout-receipt,.change-composer { border:2px solid rgba(16,43,75,.1); box-shadow:0 7px 0 rgba(16,43,75,.09); }
+.answer-note,.venture-results { border:2px dashed rgba(16,43,75,.15); box-shadow:0 5px 0 rgba(16,43,75,.06); }
+
+@media (max-width:640px) { .game-shell-canvas::before { opacity:.18; background-position:center top; }.game-play-header { margin-inline:.1rem; }.mission-ledger__beacon { right:1rem; }.decision-card::before,.venture-board::before { left:12%; width:76%; } }
+@media (prefers-reduced-motion: reduce) { .choice-button:not(:disabled):hover,.action-trio button:not(:disabled):hover,.price-options button:not(:disabled):hover,.cash-choices button:not(:disabled):hover,.maze-choices button:not(:disabled):hover,.offer-card:not(:disabled):hover,.venture-choice:not(:disabled):hover { transform:none; } }
+
+/* Visual Upgrade II — The play shell is a bright patrol field desk, not a generic app panel. */
+.game-shell-canvas::after { position:absolute; z-index:0; top:4.8rem; right:2.3rem; width:6.5rem; height:6.5rem; border:3px dashed rgba(255,107,74,.25); border-radius:50%; content:""; box-shadow:0 0 0 12px rgba(255,215,101,.09); transform:rotate(-12deg); pointer-events:none; }
+.mission-ledger { border-color:rgba(255,215,101,.38)!important; box-shadow:8px 10px 0 rgba(7,27,48,.21),0 20px 38px rgba(7,27,48,.18); }
+.mission-ledger::after { position:absolute; z-index:0; right:1rem; bottom:1rem; width:3.3rem; height:3.3rem; border:2px solid rgba(255,215,101,.42); border-radius:50%; content:"✦"; color:rgba(255,215,101,.82); font-family:"Baloo 2","Cairo",sans-serif; font-size:2rem; line-height:3rem; text-align:center; transform:rotate(-9deg); }
+.game-stage,.venture-stage { border-top:8px solid rgba(255,215,101,.35); background:linear-gradient(145deg,rgba(255,253,246,.94),rgba(240,249,244,.87))!important; }
+.game-stage::after,.venture-stage::after { position:absolute; z-index:0; right:5%; bottom:6%; width:5rem; height:1rem; border-radius:50%; content:""; background:rgba(71,183,160,.18); box-shadow:-3.8rem -1.2rem 0 rgba(255,215,101,.2),-7rem 1.3rem 0 rgba(255,107,74,.11); transform:rotate(-7deg); pointer-events:none; }
+.game-play-header { border:2px dashed rgba(16,43,75,.16); border-radius:.7rem 1.5rem .75rem 1.35rem; background:rgba(255,253,247,.92); box-shadow:5px 7px 0 rgba(16,43,75,.09); }
+.decision-card,.sorter-board,.budget-board,.sprint-board,.detective-board,.discount-board,.cashflow-board,.maze-board,.venture-board { border-radius:1rem 1.65rem .95rem 1.45rem!important; box-shadow:7px 10px 0 rgba(16,43,75,.09),0 24px 44px rgba(40,59,70,.12)!important; }
+.decision-card::after,.venture-board::after { position:absolute; z-index:1; top:1rem; right:1rem; width:1rem; height:1rem; border:2px solid rgba(16,43,75,.14); border-radius:50%; content:""; background:#ffd765; box-shadow:0 0 0 4px rgba(255,215,101,.18); }
+.choice-button,.action-trio button,.price-options button,.cash-choices button,.maze-choices button,.offer-card,.venture-choice { border-radius:.8rem 1.15rem .85rem 1.25rem!important; background-image:linear-gradient(145deg,rgba(255,255,255,.22),transparent)!important; }
+.choice-button:not(:disabled):active,.action-trio button:not(:disabled):active,.price-options button:not(:disabled):active,.cash-choices button:not(:disabled):active,.maze-choices button:not(:disabled):active,.offer-card:not(:disabled):active,.venture-choice:not(:disabled):active { transform:translateY(3px); box-shadow:0 2px 0 rgba(16,43,75,.12); }
+@media (max-width:640px) { .game-shell-canvas::after { top:3.5rem; right:-1.4rem; width:5rem; height:5rem; }.game-stage,.venture-stage { border-top-width:5px; }.game-play-header { border-radius:.65rem 1.15rem .7rem 1rem; } }

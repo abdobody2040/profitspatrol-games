@@ -1,4 +1,4 @@
-/** Design reminder: The shell makes every game feel like one ProfitsPatrol expedition, with compact status, clear actions, and a learning receipt. */
+/** Design reminder: The shell makes every game feel like one ProfitsPatrol expedition, with a tactile district backdrop, clear actions, and a learning receipt. */
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowLeft, Coins, Pause, Play, RotateCcw, Star, Target, X } from "lucide-react";
 import { useState } from "react";
@@ -13,9 +13,17 @@ import SoundToggle from "@/components/SoundToggle";
 type Props = { gameId: GameId; onExit: () => void };
 type Phase = "intro" | "playing" | "paused" | "results";
 
+function visualDistrict(station: number) {
+  if (station <= 10) return "money";
+  if (station <= 20 || (station >= 31 && station <= 40)) return "venture";
+  if (station >= 46) return "launch";
+  return "strategy";
+}
+
 export default function GameShell({ gameId, onExit }: Props) {
   const { t } = useTranslation();
   const game = getGame(gameId);
+  const district = visualDistrict(Number(game.number));
   const saved = useGameProgress((state) => state.games[gameId]);
   const games = useGameProgress((state) => state.games);
   const capstone = useGameProgress((state) => state.capstone);
@@ -48,7 +56,9 @@ export default function GameShell({ gameId, onExit }: Props) {
         </div>
       </header>
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-7 sm:px-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:px-10">
-        <aside className="order-2 rounded-[2rem] bg-[#102b4b] p-6 text-white shadow-[0_18px_44px_rgba(16,43,75,0.16)] lg:order-1 lg:min-h-[630px]">
+        <aside className="mission-ledger order-2 rounded-[2rem] bg-[#102b4b] p-6 text-white shadow-[0_18px_44px_rgba(16,43,75,0.16)] lg:order-1 lg:min-h-[630px]">
+          <span className="mission-ledger__roof" aria-hidden="true"><i /><i /><i /></span>
+          <span className="mission-ledger__beacon" aria-hidden="true">✦</span>
           <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.13em] text-[#ffd765]"><Target size={14} /> {t("common.mission")}</div>
           <h1 className="mt-5 font-display text-4xl leading-none">{t(game.titleKey)}</h1>
           <p className="mt-4 text-sm leading-6 text-white/72">{t(game.objectiveKey)}</p>
@@ -59,7 +69,7 @@ export default function GameShell({ gameId, onExit }: Props) {
           </div>
           <div className="mt-8 rounded-2xl bg-[#ff6b4a] p-4 text-sm leading-6 text-white"><p className="font-display text-xl">{t("common.objective")}</p><p className="mt-1 text-white/88">{t(game.shortKey)}</p></div>
         </aside>
-        <section className="order-1 relative min-h-[630px] overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_44px_rgba(40,59,70,0.10)] lg:order-2">
+        <section className={`game-shell-canvas game-shell-canvas--${district} order-1 relative min-h-[630px] overflow-hidden rounded-[2rem] bg-white shadow-[0_18px_44px_rgba(40,59,70,0.10)] lg:order-2`}>
           <AnimatePresence mode="wait">
             {phase === "intro" && <motion.div key="intro" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} className="game-intro">
               <div className="game-intro__shape" style={{ backgroundColor: game.accent }} />

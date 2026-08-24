@@ -119,3 +119,11 @@
 - [x] Validate the enhanced experience across desktop and mobile, keyboard and touch inputs, Arabic RTL, TypeScript, test suite, and production build.
 - [x] Attempt to rename the private GitHub repository to `profitspatrol`; retain the existing private `Profitspatrol` repository after discovering the name conflict.
 - [x] Rename the current private GitHub repository to `profitspatrol-games`, update the configured remote, and verify the already-pushed upgrade at its final URL.
+
+## ProfitsPatrol Visual Upgrade
+
+- [x] Audit the shared station-card, GameShell, and game-board visual components to identify reusable graphic upgrades without changing game rules.
+- [x] Strengthen all station cards with place-first storefront details, richer status treatment, and clearer visual hierarchy across the 50-stop route.
+- [x] Improve shared game-board framing, progress feedback, decision controls, and results presentation while preserving touch targets, keyboard use, and Arabic RTL behavior.
+- [x] Verify representative games and the complete hub at desktop, tablet, and mobile widths, then run regression tests, TypeScript checks, and a production build.
+- [ ] Save the visual-upgrade checkpoint and push the verified changes to the private `profitspatrol-games` repository.

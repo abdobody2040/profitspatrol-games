@@ -1,4 +1,5 @@
 /** Design reminder: Every interaction is a tangible money decision with immediate feedback inside one playful business-adventure world. */
+/** Design reminder: Shared game mechanics remain compact while the visual system makes every action feel like a tactile neighborhood mission. */
 import { ArrowLeft, ArrowRight, BriefcaseBusiness, CircleDollarSign, Coins, HandCoins, HeartHandshake, Lightbulb, Minus, Plus, ReceiptText, RefreshCcw, RotateCcw, Route, ShieldCheck, Sparkles, Store, Target, TrendingUp, Trophy, WalletCards, Zap } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type ComponentType, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,7 @@ import { CommunicationLab, DealMaker, LeadershipQuest, NegotiationArena, TeamCap
 import { BusinessTycoon, CompetitorHunt, GrowthEngine, MarketWars, StrategyEmpire } from "./Batch09Games";
 import { ECommerceRush, MarketingMachine, PitchBattle, SalesMasterTen, StartupLaunch } from "./Batch10Games";
 import "./game-ui.css";
+import "./game-visual-upgrade.css";
 import "./batch08.css";
 import "./batch09.css";
 import "./batch10.css";

@@ -1,4 +1,4 @@
-/** Design reminder: This hub is a tactile business-neighborhood map with coral decision points and playful asymmetric motion. */
+/** Design reminder: This hub is a tactile business-neighborhood map where every stop reads as a storefront first and an information card second. */
 import { motion } from "framer-motion";
 import { BadgePercent, CircleDollarSign, Coins, MapPinned, Medal, PiggyBank, ReceiptText, Route, Search, Shapes, Store, Target, Trophy, WalletCards } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -6,6 +6,7 @@ import { GAME_REGISTRY, type GameDefinition, type GameId } from "@/lib/game-regi
 import { buildProgressSummary, TOTAL_STARS, type Achievement } from "@/lib/progress-summary";
 import { useGameProgress } from "@/store/game-progress";
 import SoundToggle from "@/components/SoundToggle";
+import "@/components/visual-upgrade.css";
 import "./batch08-map.css";
 import "./batch09-map.css";
 import "./batch10-map.css";
@@ -89,11 +90,14 @@ function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: 
       style={{ "--station": game.accent } as React.CSSProperties}
     >
       <span className="station-stop__anchor" aria-hidden="true" />
-      <div className={`station-stop station-stop--${STATION_TONES[index]} station-stop--${landmark.cue} relative h-full`}>
+      <div className={`station-stop station-stop--${STATION_TONES[index]} station-stop--${landmark.cue} ${progress?.completed ? "station-stop--complete" : ""} relative h-full`}>
         <span className="station-stop__sidewalk" aria-hidden="true" />
         <span className="station-stop__coin" aria-hidden="true">$</span>
+        <span className="station-stop__roof" aria-hidden="true"><i /><i /><i /><i /></span>
         <span className="station-stop__awning" aria-hidden="true" />
         <span className="station-stop__facade" aria-hidden="true"><i /><i /><i /></span>
+        <span className="station-stop__windowbank" aria-hidden="true"><i /><i /><i /></span>
+        <span className="station-stop__stoop" aria-hidden="true" />
         <span className="station-stop__prop" aria-hidden="true" />
         {game.image ? <img src={game.image} alt="" className="station-stop__image" /> : <div className="station-stop__pattern" aria-hidden="true"><span /><span /><span /></div>}
         <div className="station-stop__shade" />
@@ -112,7 +116,7 @@ function StationCard({ game, onSelect }: { game: GameDefinition; onSelect: (id: 
               <p className="mt-2 text-sm leading-5 text-[#476279]">{t(game.shortKey)}</p>
               <button type="button" onClick={() => onSelect(game.id)} className="station-play mt-4">
                 {moveCopy} <span className="station-stop__next">{progress?.completed ? "↻" : "→"}</span>
-                <span aria-hidden="true">→</span>
+                <span className="station-play__arrow" aria-hidden="true">→</span>
               </button>
             </div>
           </div>
